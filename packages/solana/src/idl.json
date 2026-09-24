@@ -1,0 +1,2659 @@
+{
+  "address": "ASUM4469PDqUc4UQLQdth3k6e5JUtKsE3fUxmaRvP7tz",
+  "metadata": {
+    "name": "prism",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "add_liquidity",
+      "discriminator": [
+        181,
+        157,
+        89,
+        67,
+        143,
+        182,
+        52,
+        72
+      ],
+      "accounts": [
+        {
+          "name": "provider",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool.mint_a",
+                "account": "Pool"
+              },
+              {
+                "kind": "account",
+                "path": "pool.mint_b",
+                "account": "Pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "provider_a",
+          "writable": true
+        },
+        {
+          "name": "provider_b",
+          "writable": true
+        },
+        {
+          "name": "reserve_a",
+          "writable": true
+        },
+        {
+          "name": "reserve_b",
+          "writable": true
+        },
+        {
+          "name": "lp_mint",
+          "writable": true
+        },
+        {
+          "name": "provider_lp",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "provider"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lp_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount_a",
+          "type": "u64"
+        },
+        {
+          "name": "amount_b",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "claim_tokens",
+      "docs": [
+        "Exchange a funding receipt for tranche tokens."
+      ],
+      "discriminator": [
+        108,
+        216,
+        210,
+        231,
+        0,
+        212,
+        42,
+        64
+      ],
+      "accounts": [
+        {
+          "name": "investor",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "commitment"
+          ]
+        },
+        {
+          "name": "vault"
+        },
+        {
+          "name": "commitment",
+          "writable": true
+        },
+        {
+          "name": "vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "tranche_mint",
+          "writable": true
+        },
+        {
+          "name": "investor_tranche_token",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "investor"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "tranche_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "clear_vault",
+      "docs": [
+        "Close the window, run the launch gate, and lock rates."
+      ],
+      "discriminator": [
+        235,
+        172,
+        129,
+        59,
+        56,
+        26,
+        150,
+        162
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "vault"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "alpha_mint",
+          "docs": [
+            "One mint per tranche per vault. A default in one vault cannot reach",
+            "holders in another."
+          ],
+          "writable": true
+        },
+        {
+          "name": "core_mint",
+          "writable": true
+        },
+        {
+          "name": "prime_mint",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "el_bps",
+          "type": {
+            "array": [
+              "u16",
+              3
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "commit",
+      "docs": [
+        "Commit capital to a tranche. Rates shown during the window are",
+        "indicative and non-binding."
+      ],
+      "discriminator": [
+        223,
+        140,
+        142,
+        165,
+        229,
+        208,
+        156,
+        74
+      ],
+      "accounts": [
+        {
+          "name": "investor",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "underlying_mint",
+          "relations": [
+            "vault"
+          ]
+        },
+        {
+          "name": "investor_token",
+          "writable": true
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "commitment",
+          "docs": [
+            "A non-transferable receipt. Tranche tokens are not minted until",
+            "clearing, because before clearing the rate does not exist."
+          ],
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "seniority",
+          "type": "u8"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "declare_loss",
+      "docs": [
+        "Record a realized loss and run the waterfall."
+      ],
+      "discriminator": [
+        51,
+        202,
+        154,
+        130,
+        65,
+        132,
+        242,
+        188
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "vault"
+          ]
+        },
+        {
+          "name": "vault",
+          "writable": true
+        }
+      ],
+      "args": [
+        {
+          "name": "loss",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "disburse",
+      "docs": [
+        "Release capital to the borrower."
+      ],
+      "discriminator": [
+        68,
+        250,
+        205,
+        89,
+        217,
+        142,
+        13,
+        44
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "vault"
+          ]
+        },
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "borrower_token",
+          "writable": true
+        },
+        {
+          "name": "treasury_token",
+          "docs": [
+            "PRISM's fee destination. Not written to here: the fee is charged on the",
+            "coupon, so it is collected from repayments rather than at drawdown.",
+            "Left immutable so a borrower who is also the treasury does not trip",
+            "Anchor's duplicate-mutable-account check."
+          ]
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "freeze_pool",
+      "docs": [
+        "Halt trading on a distressed vault; price discovery moves to auction."
+      ],
+      "discriminator": [
+        211,
+        216,
+        1,
+        216,
+        54,
+        191,
+        102,
+        150
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "vault"
+          ]
+        },
+        {
+          "name": "vault"
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool.mint_a",
+                "account": "Pool"
+              },
+              {
+                "kind": "account",
+                "path": "pool.mint_b",
+                "account": "Pool"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "frozen",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "init_config",
+      "docs": [
+        "Create protocol config with documented defaults."
+      ],
+      "discriminator": [
+        23,
+        235,
+        115,
+        232,
+        168,
+        96,
+        1,
+        231
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "init_pool",
+      "docs": [
+        "Open a pool for a tranche pair. Gated to Forge-registered mints."
+      ],
+      "discriminator": [
+        116,
+        233,
+        199,
+        204,
+        115,
+        159,
+        171,
+        36
+      ],
+      "accounts": [
+        {
+          "name": "creator",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "vault",
+          "docs": [
+            "Pool creation is gated to Forge-registered mints. Left permissionless,",
+            "anyone could list a counterfeit `pALPHA` and drain buyers who do not",
+            "verify mint addresses."
+          ]
+        },
+        {
+          "name": "mint_a"
+        },
+        {
+          "name": "mint_b"
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint_a"
+              },
+              {
+                "kind": "account",
+                "path": "mint_b"
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "reserve_a",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  115,
+                  101,
+                  114,
+                  118,
+                  101,
+                  95,
+                  97
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "reserve_b",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  115,
+                  101,
+                  114,
+                  118,
+                  101,
+                  95,
+                  98
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "lp_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  112,
+                  95,
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "init_vault",
+      "docs": [
+        "Open a vault and start the funding window."
+      ],
+      "discriminator": [
+        77,
+        79,
+        85,
+        150,
+        33,
+        217,
+        52,
+        106
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "borrower"
+        },
+        {
+          "name": "underlying_mint",
+          "docs": [
+            "The underlying stablecoin. Tests mint a local token; production passes",
+            "canonical USDC."
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "vault_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "escrow",
+          "docs": [
+            "Escrow. Holds committed USDC until disbursement, and repayments until",
+            "redemption."
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "vault_id",
+          "type": "pubkey"
+        },
+        {
+          "name": "principal_target",
+          "type": "u64"
+        },
+        {
+          "name": "coupon_bps",
+          "type": "u16"
+        },
+        {
+          "name": "platform_fee_bps",
+          "type": "u16"
+        },
+        {
+          "name": "funding_deadline",
+          "type": "i64"
+        },
+        {
+          "name": "term_seconds",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "mature_vault",
+      "docs": [
+        "Mark the loan repaid and open redemption."
+      ],
+      "discriminator": [
+        154,
+        88,
+        240,
+        241,
+        217,
+        35,
+        230,
+        98
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "vault"
+          ]
+        },
+        {
+          "name": "vault",
+          "writable": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "quote",
+      "docs": [
+        "Publish accrued redemption value per tranche."
+      ],
+      "discriminator": [
+        149,
+        42,
+        109,
+        247,
+        134,
+        146,
+        213,
+        123
+      ],
+      "accounts": [
+        {
+          "name": "vault"
+        }
+      ],
+      "args": [],
+      "returns": {
+        "array": [
+          "u64",
+          3
+        ]
+      }
+    },
+    {
+      "name": "redeem",
+      "docs": [
+        "Burn tranche tokens and pay out."
+      ],
+      "discriminator": [
+        184,
+        12,
+        86,
+        149,
+        70,
+        196,
+        97,
+        225
+      ],
+      "accounts": [
+        {
+          "name": "investor",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "commitment"
+          ]
+        },
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "commitment",
+          "writable": true
+        },
+        {
+          "name": "vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "tranche_mint",
+          "writable": true
+        },
+        {
+          "name": "investor_tranche_token",
+          "writable": true
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "investor_underlying",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "refund",
+      "docs": [
+        "Reclaim capital from a cancelled vault."
+      ],
+      "discriminator": [
+        2,
+        96,
+        183,
+        251,
+        63,
+        208,
+        46,
+        46
+      ],
+      "accounts": [
+        {
+          "name": "investor",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "commitment"
+          ]
+        },
+        {
+          "name": "vault"
+        },
+        {
+          "name": "commitment",
+          "writable": true
+        },
+        {
+          "name": "vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "investor_underlying",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "remove_liquidity",
+      "docs": [
+        "Burn LP shares for a pro-rata slice of both reserves."
+      ],
+      "discriminator": [
+        80,
+        85,
+        209,
+        72,
+        24,
+        206,
+        177,
+        108
+      ],
+      "accounts": [
+        {
+          "name": "provider",
+          "signer": true
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool.mint_a",
+                "account": "Pool"
+              },
+              {
+                "kind": "account",
+                "path": "pool.mint_b",
+                "account": "Pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "provider_a",
+          "writable": true
+        },
+        {
+          "name": "provider_b",
+          "writable": true
+        },
+        {
+          "name": "reserve_a",
+          "writable": true
+        },
+        {
+          "name": "reserve_b",
+          "writable": true
+        },
+        {
+          "name": "lp_mint",
+          "writable": true
+        },
+        {
+          "name": "provider_lp",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "shares",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "repay",
+      "docs": [
+        "Borrower repayment into escrow."
+      ],
+      "discriminator": [
+        234,
+        103,
+        67,
+        82,
+        208,
+        234,
+        219,
+        166
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "payer_token",
+          "writable": true
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "swap",
+      "docs": [
+        "Swap along the constant-product curve. `min_out` bounds slippage."
+      ],
+      "discriminator": [
+        248,
+        198,
+        158,
+        145,
+        225,
+        117,
+        135,
+        200
+      ],
+      "accounts": [
+        {
+          "name": "trader",
+          "signer": true
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool.mint_a",
+                "account": "Pool"
+              },
+              {
+                "kind": "account",
+                "path": "pool.mint_b",
+                "account": "Pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "trader_in",
+          "writable": true
+        },
+        {
+          "name": "trader_out",
+          "writable": true
+        },
+        {
+          "name": "reserve_in",
+          "writable": true
+        },
+        {
+          "name": "reserve_out",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount_in",
+          "type": "u64"
+        },
+        {
+          "name": "min_out",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "update_config",
+      "docs": [
+        "Tune policy parameters. Existing vaults keep their frozen rates."
+      ],
+      "discriminator": [
+        29,
+        158,
+        252,
+        191,
+        10,
+        83,
+        219,
+        99
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "update",
+          "type": {
+            "defined": {
+              "name": "ConfigUpdate"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Commitment",
+      "discriminator": [
+        61,
+        112,
+        129,
+        128,
+        24,
+        147,
+        77,
+        87
+      ]
+    },
+    {
+      "name": "Config",
+      "discriminator": [
+        155,
+        12,
+        170,
+        224,
+        30,
+        250,
+        204,
+        130
+      ]
+    },
+    {
+      "name": "Pool",
+      "discriminator": [
+        241,
+        154,
+        109,
+        4,
+        17,
+        177,
+        109,
+        188
+      ]
+    },
+    {
+      "name": "Vault",
+      "discriminator": [
+        211,
+        8,
+        232,
+        43,
+        2,
+        152,
+        117,
+        119
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "RedemptionValue",
+      "discriminator": [
+        39,
+        71,
+        118,
+        9,
+        54,
+        111,
+        217,
+        183
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "CouponTooHigh",
+      "msg": "Coupon exceeds the maximum permitted rate"
+    },
+    {
+      "code": 6001,
+      "name": "FeeTooHigh",
+      "msg": "Platform fee exceeds the maximum permitted rate"
+    },
+    {
+      "code": 6002,
+      "name": "FeeExceedsCoupon",
+      "msg": "Platform fee must be lower than the borrower coupon"
+    },
+    {
+      "code": 6003,
+      "name": "ZeroPrincipal",
+      "msg": "Principal target must be greater than zero"
+    },
+    {
+      "code": 6004,
+      "name": "DeadlineInPast",
+      "msg": "Funding deadline must be in the future"
+    },
+    {
+      "code": 6005,
+      "name": "VaultNotFunding",
+      "msg": "Vault is not accepting commitments"
+    },
+    {
+      "code": 6006,
+      "name": "FundingWindowClosed",
+      "msg": "Funding window has closed"
+    },
+    {
+      "code": 6007,
+      "name": "ZeroCommitment",
+      "msg": "Commitment amount must be greater than zero"
+    },
+    {
+      "code": 6008,
+      "name": "InvalidSeniority",
+      "msg": "Unknown tranche seniority"
+    },
+    {
+      "code": 6009,
+      "name": "TrancheCapExceeded",
+      "msg": "Commitment would exceed this tranche's cap"
+    },
+    {
+      "code": 6010,
+      "name": "PrincipalTargetExceeded",
+      "msg": "Commitment would exceed the vault's principal target"
+    },
+    {
+      "code": 6011,
+      "name": "FundingWindowOpen",
+      "msg": "Funding window has not closed yet"
+    },
+    {
+      "code": 6012,
+      "name": "VaultNotClearable",
+      "msg": "Vault is not ready for clearing"
+    },
+    {
+      "code": 6013,
+      "name": "GateUndersubscribed",
+      "msg": "Launch gate: principal target not fully subscribed"
+    },
+    {
+      "code": 6014,
+      "name": "GateInsolvent",
+      "msg": "Launch gate: promised interest exceeds the distributable pie"
+    },
+    {
+      "code": 6015,
+      "name": "GateAlphaBelowFloor",
+      "msg": "Launch gate: ALPHA tranche is below the first-loss floor"
+    },
+    {
+      "code": 6016,
+      "name": "GateTrancheCapExceeded",
+      "msg": "Launch gate: a tranche exceeds its cap"
+    },
+    {
+      "code": 6017,
+      "name": "GateRateOrdering",
+      "msg": "Launch gate: tranche rates are not strictly ordered"
+    },
+    {
+      "code": 6018,
+      "name": "VaultNotActive",
+      "msg": "Vault is not active"
+    },
+    {
+      "code": 6019,
+      "name": "VaultNotMatured",
+      "msg": "Vault has not matured"
+    },
+    {
+      "code": 6020,
+      "name": "VaultCancelled",
+      "msg": "Vault was cancelled; claim a refund instead"
+    },
+    {
+      "code": 6021,
+      "name": "LossExceedsPrincipal",
+      "msg": "Declared loss exceeds the vault principal"
+    },
+    {
+      "code": 6022,
+      "name": "AlreadyRedeemed",
+      "msg": "This commitment has already been redeemed"
+    },
+    {
+      "code": 6023,
+      "name": "CommitmentVaultMismatch",
+      "msg": "Commitment does not belong to this vault"
+    },
+    {
+      "code": 6024,
+      "name": "Unauthorized",
+      "msg": "Only the vault authority may perform this action"
+    },
+    {
+      "code": 6025,
+      "name": "WrongMint",
+      "msg": "Token account mint does not match the vault's underlying mint"
+    },
+    {
+      "code": 6026,
+      "name": "AlreadyDisbursed",
+      "msg": "Vault has already disbursed to the borrower"
+    },
+    {
+      "code": 6027,
+      "name": "InsufficientEscrow",
+      "msg": "Escrow holds insufficient funds for this operation"
+    },
+    {
+      "code": 6028,
+      "name": "ZeroRepayment",
+      "msg": "Repayment must be greater than zero"
+    },
+    {
+      "code": 6029,
+      "name": "VaultNotCancelled",
+      "msg": "Vault is not cancelled; use redeem instead"
+    },
+    {
+      "code": 6030,
+      "name": "InvalidConfig",
+      "msg": "Config values are inconsistent"
+    },
+    {
+      "code": 6031,
+      "name": "InsufficientLiquidity",
+      "msg": "Pool has insufficient liquidity for this swap"
+    },
+    {
+      "code": 6032,
+      "name": "SlippageExceeded",
+      "msg": "Swap output fell below the caller's minimum"
+    },
+    {
+      "code": 6033,
+      "name": "PoolFrozen",
+      "msg": "Pool is frozen; the vault is distressed"
+    },
+    {
+      "code": 6034,
+      "name": "IdenticalMints",
+      "msg": "Both tokens in a pool must differ"
+    },
+    {
+      "code": 6035,
+      "name": "MathOverflow",
+      "msg": "Arithmetic overflow"
+    }
+  ],
+  "types": [
+    {
+      "name": "Commitment",
+      "docs": [
+        "A non-transferable receipt issued during the funding window.",
+        "",
+        "Tokens are not minted until clearing, because before clearing the rate does",
+        "not exist — there is no determinate claim to tokenize."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "investor",
+            "type": "pubkey"
+          },
+          {
+            "name": "seniority",
+            "type": "u8"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "redeemed",
+            "docs": [
+              "Set once the holder has redeemed, to prevent double-claims."
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "payout",
+            "docs": [
+              "Recorded at redemption, for auditability."
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Config",
+      "docs": [
+        "Protocol-level policy. Every field here was a hard-coded constant until an",
+        "operator needed to tune it per market; the constants remain the defaults.",
+        "",
+        "These are judgement calls, not derived values. The ALPHA floor in",
+        "particular is a defensible default, not a measured one — revisit it once",
+        "there is real loss data."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "risk_free_bps",
+            "docs": [
+              "Benchmark a lender could earn without credit risk."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "lambda_bps",
+            "docs": [
+              "Risk premium multiplier, in bps. 3_500 = lambda of 0.35."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "alpha_floor_bps",
+            "docs": [
+              "Minimum first-loss depth. A tranche thinner than the losses it must",
+              "absorb protects nobody."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "alpha_cap_bps",
+            "type": "u16"
+          },
+          {
+            "name": "core_cap_bps",
+            "type": "u16"
+          },
+          {
+            "name": "prime_cap_bps",
+            "type": "u16"
+          },
+          {
+            "name": "max_coupon_bps",
+            "type": "u16"
+          },
+          {
+            "name": "max_fee_bps",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigUpdate",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "risk_free_bps",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "lambda_bps",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "alpha_floor_bps",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "alpha_cap_bps",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "core_cap_bps",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "prime_cap_bps",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "max_coupon_bps",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "max_fee_bps",
+            "type": {
+              "option": "u16"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pool",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "authority_bump",
+            "type": "u8"
+          },
+          {
+            "name": "mint_a",
+            "docs": [
+              "Ordered canonically so a pair maps to exactly one PDA."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "mint_b",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault_a",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault_b",
+            "type": "pubkey"
+          },
+          {
+            "name": "lp_mint",
+            "docs": [
+              "Per-pool LP mint. A share is a claim on a fraction of both reserves."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "lp_mint_bump",
+            "type": "u8"
+          },
+          {
+            "name": "fee_bps",
+            "docs": [
+              "Swap fee in bps, retained by the pool for its liquidity providers."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "frozen",
+            "docs": [
+              "Set when the underlying vault is distressed. An AMM cannot price a",
+              "defaulted loan: liquidity providers withdraw as default becomes likely,",
+              "so the bid vanishes exactly when holders need it."
+            ],
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RedemptionValue",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "at",
+            "type": "i64"
+          },
+          {
+            "name": "value_bps",
+            "docs": [
+              "Per-token value in bps of face, indexed by seniority. 10_500 = 1.05."
+            ],
+            "type": {
+              "array": [
+                "u64",
+                3
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Tranche",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "committed",
+            "docs": [
+              "Capital committed to this tranche."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "mint",
+            "docs": [
+              "This vault's mint for this seniority."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "mint_bump",
+            "type": "u8"
+          },
+          {
+            "name": "clearing_bps",
+            "docs": [
+              "Rate set once at clearing, immutable thereafter."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "attach_low_bps",
+            "docs": [
+              "Loss band, in bps of principal. ALPHA attaches at 0.",
+              "A tranche absorbs losses falling between attach_low and attach_high."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "attach_high_bps",
+            "type": "u16"
+          },
+          {
+            "name": "loss",
+            "docs": [
+              "Principal destroyed by the waterfall, in base units."
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Vault",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "state",
+            "type": {
+              "defined": {
+                "name": "VaultState"
+              }
+            }
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "borrower",
+            "type": "pubkey"
+          },
+          {
+            "name": "underlying_mint",
+            "docs": [
+              "The underlying stablecoin. Test deployments use a locally minted token;",
+              "production replaces this with canonical USDC."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "vault_authority_bump",
+            "docs": [
+              "PDA that signs every transfer out of escrow."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "disbursed",
+            "docs": [
+              "Set once the borrower has drawn down. Prevents a second disbursement."
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "repaid",
+            "docs": [
+              "Principal the borrower has repaid so far."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "principal_target",
+            "docs": [
+              "Target raise, in the underlying token's base units."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "coupon_bps",
+            "docs": [
+              "What the borrower pays, in bps. e.g. 1400 = 14%."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "platform_fee_bps",
+            "docs": [
+              "PRISM's cut off the top, in bps. e.g. 200 = 2%."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "funding_deadline",
+            "docs": [
+              "Unix timestamp after which no further commitments are accepted."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "activated_at",
+            "docs": [
+              "Set at clearing; accrual starts here."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "term_seconds",
+            "docs": [
+              "Loan tenor in seconds. Accrual reaches the full clearing rate at term."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "total_committed",
+            "docs": [
+              "Sum of all commitments across every tranche."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "realized_loss",
+            "docs": [
+              "Realized portfolio loss, in base units. Set when a loss is declared."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "tranches",
+            "docs": [
+              "Per-tranche book, indexed by seniority (0=ALPHA, 1=CORE, 2=PRIME)."
+            ],
+            "type": {
+              "array": [
+                {
+                  "defined": {
+                    "name": "Tranche"
+                  }
+                },
+                3
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "VaultState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Funding"
+          },
+          {
+            "name": "Active"
+          },
+          {
+            "name": "Matured"
+          },
+          {
+            "name": "Cancelled"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "ALPHA_CAP_BPS",
+      "docs": [
+        "Caps concentration regardless of how much demand arrives for high yield."
+      ],
+      "type": "u16",
+      "value": "2500"
+    },
+    {
+      "name": "ALPHA_FLOOR_BPS",
+      "docs": [
+        "A thin first-loss tranche protects nobody: a 2% ALPHA tranche is wiped by a",
+        "2% loss, leaving CORE and PRIME exposed to risk they did not price."
+      ],
+      "type": "u16",
+      "value": "1000"
+    },
+    {
+      "name": "BPS_DENOM",
+      "docs": [
+        "Basis points denominator."
+      ],
+      "type": "u64",
+      "value": "10000"
+    },
+    {
+      "name": "COMMITMENT_SEED",
+      "type": "bytes",
+      "value": "[99, 111, 109, 109, 105, 116]"
+    },
+    {
+      "name": "CONFIG_SEED",
+      "type": "bytes",
+      "value": "[99, 111, 110, 102, 105, 103]"
+    },
+    {
+      "name": "CORE_CAP_BPS",
+      "type": "u16",
+      "value": "4000"
+    },
+    {
+      "name": "DEFAULT_LAMBDA_BPS",
+      "docs": [
+        "Risk premium multiplier. 3_500 = lambda of 0.35."
+      ],
+      "type": "u16",
+      "value": "3500"
+    },
+    {
+      "name": "DEFAULT_RISK_FREE_BPS",
+      "docs": [
+        "Benchmark a lender could earn without credit risk. Tokenized treasuries",
+        "sat at 4-5% when this was chosen."
+      ],
+      "type": "u16",
+      "value": "500"
+    },
+    {
+      "name": "DEFAULT_TERM_SECONDS",
+      "docs": [
+        "Default loan tenor: 12 months."
+      ],
+      "type": "u64",
+      "value": "31536000"
+    },
+    {
+      "name": "LP_MINT_SEED",
+      "type": "bytes",
+      "value": "[108, 112, 95, 109, 105, 110, 116]"
+    },
+    {
+      "name": "MAX_COUPON_BPS",
+      "docs": [
+        "Sanity bound on borrower coupon."
+      ],
+      "type": "u16",
+      "value": "5000"
+    },
+    {
+      "name": "MAX_FEE_BPS",
+      "docs": [
+        "Sanity bound on the platform fee."
+      ],
+      "type": "u16",
+      "value": "1000"
+    },
+    {
+      "name": "POOL_AUTHORITY_SEED",
+      "type": "bytes",
+      "value": "[112, 111, 111, 108, 95, 97, 117, 116, 104, 111, 114, 105, 116, 121]"
+    },
+    {
+      "name": "POOL_SEED",
+      "type": "bytes",
+      "value": "[112, 111, 111, 108]"
+    },
+    {
+      "name": "PRIME_CAP_BPS",
+      "type": "u16",
+      "value": "8000"
+    },
+    {
+      "name": "SWAP_FEE_BPS",
+      "docs": [
+        "AMM swap fee, in bps."
+      ],
+      "type": "u16",
+      "value": "30"
+    },
+    {
+      "name": "TRANCHE_MINT_SEED",
+      "docs": [
+        "One mint per tranche per vault. `pALPHA-LF3` and `pALPHA-AB2` are distinct",
+        "assets: a default in one vault cannot reach holders in another."
+      ],
+      "type": "bytes",
+      "value": "[116, 114, 97, 110, 99, 104, 101, 95, 109, 105, 110, 116]"
+    },
+    {
+      "name": "TRANCHE_SEED",
+      "type": "bytes",
+      "value": "[116, 114, 97, 110, 99, 104, 101]"
+    },
+    {
+      "name": "VAULT_AUTHORITY_SEED",
+      "docs": [
+        "Signs every transfer out of the vault's escrow."
+      ],
+      "type": "bytes",
+      "value": "[118, 97, 117, 108, 116, 95, 97, 117, 116, 104, 111, 114, 105, 116, 121]"
+    },
+    {
+      "name": "VAULT_SEED",
+      "type": "bytes",
+      "value": "[118, 97, 117, 108, 116]"
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+/* ==========================================================================
+   PRISM — Landing page foundation
+   Tailwind entry point + shared design tokens (@prism/ui), plus the
+   landing-only entrance/ambient motion and a couple of decorative effects
+   that don't translate cleanly to utility classes.
+   ========================================================================== */
+
+@import "tailwindcss";
+@import "@prism/ui/styles/tokens.css";
+
+/* ------------------------- Landing-only type tokens ------------------------- */
+/* Hero headline only — a chamfered-corner grotesk (Solana-brand-adjacent),
+   not part of the shared type system, so it stays local rather than in
+   packages/ui/tokens.css. */
+
+@font-face {
+  font-family: "Turret Road";
+  src: url("/fonts/TurretRoad-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-solana: "Turret Road", "Test Die Grotesk B", Arial, sans-serif;
+}
+
+/* ------------------------- Landing-only motion tokens ------------------------- */
+/* Hero entrance sequence, ambient drift and the marquee/globe loops are
+   specific to this page's editorial composition, so they stay local rather
+   than in the shared token set. */
+
+@theme {
+  --animate-enter-header-side: fadeUpChrome var(--dur-text) var(--ease-out) 150ms both;
+  --animate-enter-mark: fadeUpChrome var(--dur-text) var(--ease-out) 220ms both;
+  --animate-enter-nav: fadeUpChrome var(--dur-text) var(--ease-out) 260ms both;
+  --animate-enter-headline: headlineReveal 950ms var(--ease-out) 2100ms both;
+  --animate-enter-strip: fadeUp 950ms var(--ease-out) 2850ms both;
+  --animate-enter-image: fadeUp 1150ms var(--ease-out) 3650ms both;
+
+  --animate-ambient: ambientDrift var(--dur-ambient) ease-in-out infinite;
+  --animate-globe-spin: globeSpin 7s linear infinite;
+  --animate-marquee-scroll: marqueeScroll 60s linear infinite;
+  --animate-caret-blink: caretBlink 1s step-end infinite;
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes headlineReveal {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+  @keyframes fadeUpChrome {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes ambientDrift {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(-3px, 2px, 0) scale(1.008);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+  /* Meridian lines sweep horizontally to fake a slowly rotating wireframe
+     sphere (GlobeIcon) — outline/equator stay put, only longitude lines
+     move. */
+  @keyframes globeSpin {
+    0% {
+      transform: scaleX(1);
+    }
+    50% {
+      transform: scaleX(-1);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }
+  /* Two Marquee track copies sit side by side; each slides its own full
+     width left, so the instant the first is gone the second is sitting
+     exactly where the first started — no visible seam. */
+  @keyframes marqueeScroll {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+  /* TypingHeadline's caret — a hard on/off blink (step-end, not eased),
+     matching a terminal cursor rather than a soft pulse. */
+  @keyframes caretBlink {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+/* ---------------------------------- Reset -------------------------------- */
+/* Tailwind's preflight already resets box-sizing, margin/padding, and
+   img/video sizing — only the site-specific pieces are added here. */
+
+/* Lenis smooth-scroll: keep native scrollbar/behavior, just smooth the motion. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ------------------------- Landing-only decorative effects ------------------------- */
+
+/* GlobeIcon's rotating meridians: transform-box/transform-origin have no
+   Tailwind utility, so only those two properties live here — the
+   animation itself is applied as the `animate-globe-spin` utility. */
+.globe-meridians {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Marquee's visible window: logos dissolve in/out at the left/right edges
+   instead of hard-cutting. */
+.marquee-edge-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black clamp(16px, 7vw, 64px),
+    black calc(100% - clamp(16px, 7vw, 64px)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black clamp(16px, 7vw, 64px),
+    black calc(100% - clamp(16px, 7vw, 64px)),
+    transparent
+  );
+}
+
+/* LoadingScreen's segmented indicator: discrete technical cells, not a
+   continuous width tween. Each cell holds at --color-surface-3 until its
+   turn, then steps to an active gray in one short beat via animation-delay
+   (set per-cell from the `--i` custom property in LoadingScreen.tsx) — the
+   sweep reads as deliberate left-to-right progression rather than a smooth
+   bar filling or every cell animating at once. Referenced directly by name
+   from an arbitrary Tailwind `animation` utility, so it needs no wrapper
+   class of its own. */
+@keyframes activateSegment {
+  0% {
+    background: var(--color-surface-3);
+    border-color: var(--color-line-soft);
+  }
+  100% {
+    background: var(--color-muted);
+    border-color: var(--color-line);
+  }
+}

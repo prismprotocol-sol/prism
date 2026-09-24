@@ -1,0 +1,43 @@
+@import "tailwindcss";
+@import "@prism/ui/styles/tokens.css";
+
+/* Entrance choreography for list/grid content (cards, table rows) — a
+   restrained fade+rise, staggered per-item via an inline `--i` custom
+   property rather than N named animations. */
+@theme {
+  --animate-fade-up: fadeUp 420ms var(--ease-out) both;
+  --animate-fade-up-stagger: fadeUp 420ms var(--ease-out) calc(var(--i, 0) * 45ms) both;
+  --animate-page-enter: pageEnter 320ms var(--ease-out) both;
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Route-to-route transition: quick, restrained — a page swap, not a slide show. */
+  @keyframes pageEnter {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Lenis smooth-scroll targets the <main> scroll pane directly (not
+   document.documentElement), so these classes land on that element. */
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
