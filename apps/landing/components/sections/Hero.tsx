@@ -6,7 +6,7 @@ import { heroHeadlines } from "@/lib/data";
 import { useHeroScrollScene } from "./useHeroScrollScene";
 
 export default function Hero() {
-  const { sceneRef, stickyRef, groupRef, depthRef } = useHeroScrollScene();
+  const { sceneRef, stickyRef, groupRef, depthRef, tiltRef } = useHeroScrollScene();
 
   return (
     // Falls back to plain auto-height block flow until useHeroScrollScene
@@ -106,7 +106,7 @@ export default function Hero() {
               screen, but on most screens this now falls back to plain
               static flow (see Hero's own top-of-file comment). object-fit:
               cover keeps the crop centered and undistorted. */}
-          <div className="relative h-[55vh] w-full animate-enter-image overflow-hidden bg-black max-tablet:h-[50vh] max-mobile:h-[45vh]">
+          <div className="group relative h-[55vh] w-full animate-enter-image overflow-hidden bg-black max-tablet:h-[50vh] max-mobile:h-[45vh]">
             {/* The asset already carries the halftone/dither treatment and
                 crosshair decorations baked in, so it's used as-is. This
                 layer only carries the scroll-scene's tiny extra depth
@@ -115,14 +115,33 @@ export default function Hero() {
                 compete on the same element. */}
             <div ref={depthRef} className="absolute -inset-[50px]">
               <div className="absolute -inset-2 motion-safe:animate-ambient">
-                <Image
-                  src="/images/hero.webp"
-                  alt="Halftone-processed archival photograph of an American flag and an astronaut on the lunar surface"
-                  fill
-                  priority
-                  sizes="100vw"
-                  style={{ objectFit: "cover", objectPosition: "50% 65%" }}
-                />
+                {/* Resting keystone tilt (columns fanning outward, as if
+                    leaning back) that straightens out as the page scrolls —
+                    driven by useHeroScrollScene's own scroll listener, see
+                    its tilt comment. origin-bottom hinges the straightening
+                    at the base of the columns rather than the center. */}
+                <div ref={tiltRef} className="absolute inset-0 origin-bottom">
+                  {/* No resting zoom here (this source has ~0 bottom margin
+                      baked in — any extra scale beyond plain cover only
+                      crops further into the columns), just a modest
+                      group-hover bump. Lives on this separate inner layer
+                      (not inline on the Image) so hovering can layer that
+                      scale via a plain Tailwind transition, without
+                      fighting the tilt layer's own scroll-driven inline
+                      transform above. objectPosition anchored to the top
+                      since the source's bottom edge has no margin to give,
+                      the top has some. */}
+                  <div className="absolute inset-0 transition-transform duration-[3000ms] ease-out group-hover:scale-[1.08]">
+                    <Image
+                      src="/images/hero.webp"
+                      alt="Halftone-processed photograph of a neoclassical building's pediment and Corinthian columns"
+                      fill
+                      priority
+                      sizes="100vw"
+                      style={{ objectFit: "cover", objectPosition: "50% 0%" }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
             <span className="grain" />

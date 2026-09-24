@@ -51,8 +51,8 @@ export const whyChooseFeatures = [
   },
   {
     eyebrow: "FOR ORIGINATORS",
-    headline: "Funded in days, not warehouse-line months.",
-    body: "Bring receivables banks can't move fast enough on. Post first-loss, get tranched and priced, and raise from investors who don't need a warehouse-line minimum to say yes.",
+    headline: "Funded in days, not bank-loan months.",
+    body: "Bring receivables banks can't move fast enough on. Post first-loss, get tranched and priced, and raise from investors, no bank-loan-sized minimum required.",
   },
   {
     eyebrow: "ON-CHAIN INFRASTRUCTURE",
@@ -84,12 +84,12 @@ export const faqs = [
   {
     question: "Does Prism ever lend directly?",
     answer:
-      "No. Prism structures and tranches pools that originators bring — invoice discounters, merchant lenders, payout platforms — it never originates or holds loans on its own balance sheet.",
+      "No. Prism structures and tranches pools that originators bring (invoice discounters, merchant lenders, payout platforms). It never originates or holds loans on its own balance sheet.",
   },
   {
     question: "How long does onboarding take?",
     answer:
-      "Institutional investors complete accreditation and KYC first — that's how pool one opens. Once verified, you get access to the open tranches, no waiting on a fund close.",
+      "Institutional investors complete accreditation and KYC first. That's how pool one opens. Once verified, you get access to the open tranches, no waiting on a fund close.",
   },
   {
     question: "Can I exit a position before maturity?",
@@ -99,7 +99,7 @@ export const faqs = [
   {
     question: "How is credit risk priced?",
     answer:
-      "Every pool's originator posts first-loss capital before it opens, and tranche pricing is set from that subordination plus the pool's expected loss profile — not a black-box model.",
+      "Every pool's originator posts first-loss capital before it opens. Tranche pricing is set from how much cushion sits underneath each layer, plus the pool's expected loss profile, not a black-box model.",
   },
   {
     question: "What chain does Prism run on?",

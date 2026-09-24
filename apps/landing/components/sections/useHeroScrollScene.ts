@@ -7,6 +7,11 @@ type Metrics = {
   travel: number;
 };
 
+// How far (px) the page scrolls before the hero image's resting keystone
+// tilt fully straightens out, and the tilt angle at scrollY 0.
+const TILT_STRAIGHTEN_DISTANCE = 350;
+const TILT_MAX_DEG = 8;
+
 /**
  * Drives the hero's pinned scroll scene.
  *
@@ -36,6 +41,7 @@ export function useHeroScrollScene() {
   const stickyRef = useRef<HTMLDivElement>(null);
   const groupRef = useRef<HTMLDivElement>(null);
   const depthRef = useRef<HTMLDivElement>(null);
+  const tiltRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const scene = sceneRef.current;
@@ -84,6 +90,16 @@ export function useHeroScrollScene() {
     let rafId = 0;
     function applyProgress() {
       rafId = 0;
+      // Straightens out of its resting keystone tilt as the page scrolls,
+      // independent of the pin/travel below — most screens now have little
+      // or no travel (the hero was shrunk to fit ~one viewport), so this
+      // can't ride on `progress`. Tied to raw scrollY instead, over a fixed
+      // distance, so it still animates even when the pin never engages.
+      if (tiltRef.current) {
+        const t = Math.min(Math.max(window.scrollY / TILT_STRAIGHTEN_DISTANCE, 0), 1);
+        const angle = TILT_MAX_DEG * (1 - t);
+        tiltRef.current.style.transform = `perspective(1200px) rotateX(${angle.toFixed(2)}deg)`;
+      }
       if (metrics.travel <= 0) return;
       const rect = scene!.getBoundingClientRect();
       const raw = (metrics.headerHeight - rect.top) / metrics.travel;
@@ -130,5 +146,5 @@ export function useHeroScrollScene() {
     };
   }, []);
 
-  return { sceneRef, stickyRef, groupRef, depthRef };
+  return { sceneRef, stickyRef, groupRef, depthRef, tiltRef };
 }
