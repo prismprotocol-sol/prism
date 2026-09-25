@@ -11,7 +11,7 @@ const TONE_STYLES: Record<StatusTone, string> = {
 export function StatusTag({ label, tone = "neutral" }: { label: string; tone?: StatusTone }) {
   return (
     <span
-      className={`inline-flex items-center px-2 py-1 font-mono text-[10px] tracking-[0.08em] uppercase ${TONE_STYLES[tone]}`}
+      className={`inline-flex items-center rounded-full px-2.5 py-1 font-mono text-[10px] tracking-[0.08em] uppercase ${TONE_STYLES[tone]}`}
     >
       {label}
     </span>

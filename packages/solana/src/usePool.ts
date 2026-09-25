@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
 import { BN } from "@coral-xyz/anchor";
-import { getAccount, getMint } from "@solana/spl-token";
+import { getAccount, getMint, unpackAccount } from "@solana/spl-token";
 import { useProgram } from "./useVault";
 import { reservePda, lpMintPda, ata } from "./client";
 
@@ -107,17 +107,25 @@ export function useTokenBalances(mints: PublicKey[]) {
 
   const refresh = useCallback(async () => {
     if (!publicKey || mints.length === 0) return setBalances({});
+    // One batched getMultipleAccountsInfo instead of one getAccount call per
+    // mint — the free devnet RPC rate-limits by request count, and a
+    // portfolio with several tranche positions was firing that many
+    // concurrent requests every time this hook ran.
+    const atas = mints.map((m) => ata(m, publicKey));
+    const infos = await connection.getMultipleAccountsInfo(atas);
     const out: Record<string, BN> = {};
-    await Promise.all(
-      mints.map(async (m) => {
-        try {
-          const acc = await getAccount(connection, ata(m, publicKey));
-          out[m.toBase58()] = new BN(acc.amount.toString());
-        } catch {
-          out[m.toBase58()] = new BN(0);
-        }
-      })
-    );
+    mints.forEach((m, i) => {
+      const info = infos[i];
+      if (!info) {
+        out[m.toBase58()] = new BN(0);
+        return;
+      }
+      try {
+        out[m.toBase58()] = new BN(unpackAccount(atas[i], info).amount.toString());
+      } catch {
+        out[m.toBase58()] = new BN(0);
+      }
+    });
     setBalances(out);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [connection, publicKey, key]);

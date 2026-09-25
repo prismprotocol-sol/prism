@@ -4,21 +4,15 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PrismIcon } from "@prism/ui";
-import { IconDashboard, IconVaults, IconPortfolio, IconWallet, IconCollapse, IconInfo } from "./icons";
-
-const LINKS = [
-  { href: "/", label: "Dashboard", icon: IconDashboard },
-  { href: "/vaults", label: "Vaults", icon: IconVaults },
-  { href: "/portfolio", label: "Portfolio", icon: IconPortfolio },
-  { href: "/wallet", label: "Wallet", icon: IconWallet },
-];
+import { explorerUrl, PRISM_PROGRAM_ID } from "@prism/config";
+import { NAV_LINKS } from "@/lib/nav";
+import { IconCollapse, IconInfo, IconExternal } from "./icons";
 
 const STORAGE_KEY = "prism-app-sidebar-collapsed";
 
 export function Sidebar() {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
-  const activeIndex = LINKS.findIndex((link) => link.href === pathname);
 
   useEffect(() => {
     try {
@@ -42,7 +36,7 @@ export function Sidebar() {
 
   return (
     <aside
-      className={`flex h-full shrink-0 flex-col border-r border-line-soft py-6 transition-[width] duration-[var(--dur-micro)] ease-out max-mobile:hidden ${
+      className={`relative flex h-full shrink-0 flex-col border-r border-line-soft py-6 transition-[width] duration-[var(--dur-micro)] ease-out max-mobile:hidden ${
         collapsed ? "w-[76px] px-3" : "w-[220px] px-4"
       }`}
     >
@@ -52,15 +46,8 @@ export function Sidebar() {
         </span>
       </Link>
 
-      <nav aria-label="Primary" className="relative flex flex-col gap-2">
-        {activeIndex >= 0 && (
-          <span
-            aria-hidden="true"
-            className="absolute left-0 h-12 w-0.5 bg-fg transition-transform duration-300 ease-out"
-            style={{ transform: `translateY(${activeIndex * 56}px)` }}
-          />
-        )}
-        {LINKS.map((link) => {
+      <nav aria-label="Primary" className="flex flex-col gap-2">
+        {NAV_LINKS.map((link) => {
           const active = pathname === link.href;
           const Icon = link.icon;
           return (
@@ -69,36 +56,50 @@ export function Sidebar() {
               href={link.href}
               title={collapsed ? link.label : undefined}
               className={`flex h-12 items-center gap-3 font-sans text-sm transition-colors duration-[var(--dur-micro)] ease-out ${
-                collapsed ? "justify-center px-0" : "px-3"
-              } ${active ? "bg-surface-2 text-fg" : "text-muted hover:text-fg"}`}
+                collapsed ? "justify-center px-0" : "px-2"
+              } ${active ? "text-fg" : "text-muted hover:text-fg"}`}
             >
-              <Icon className="h-[18px] w-[18px] shrink-0 transition-transform duration-[var(--dur-micro)] ease-out" />
+              <span
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-md border transition-colors duration-[var(--dur-micro)] ease-out ${
+                  active ? "border-line-strong bg-surface-2" : "border-transparent"
+                }`}
+              >
+                <Icon className="h-[18px] w-[18px]" />
+              </span>
               {!collapsed && link.label}
             </Link>
           );
         })}
       </nav>
 
-      <div className="mt-auto flex flex-col gap-1 border-t border-line-soft pt-4">
+      {/* Secondary utility actions — icon-only regardless of collapsed
+          state (unlike the primary nav, which shows labels when expanded),
+          each real and functional: Explorer, About Prism, then the
+          collapse toggle itself. Labels surface as native tooltips. */}
+      <div className="mt-auto flex flex-col items-center gap-1 border-t border-line-soft pt-4">
+        <a
+          href={explorerUrl(PRISM_PROGRAM_ID, "address")}
+          target="_blank"
+          rel="noreferrer"
+          title="Prism program on Explorer"
+          className="flex h-9 w-9 items-center justify-center rounded-md text-muted transition-colors duration-[var(--dur-micro)] ease-out hover:bg-surface-2 hover:text-fg"
+        >
+          <IconExternal className="h-[17px] w-[17px]" />
+        </a>
         <a
           href="https://prism.credit"
-          title={collapsed ? "About Prism" : undefined}
-          className={`flex items-center gap-3 py-2 font-mono text-xs tracking-[0.06em] text-muted uppercase transition-colors duration-[var(--dur-micro)] ease-out hover:text-fg ${
-            collapsed ? "justify-center px-0" : "px-3"
-          }`}
+          title="About Prism"
+          className="flex h-9 w-9 items-center justify-center rounded-md text-muted transition-colors duration-[var(--dur-micro)] ease-out hover:bg-surface-2 hover:text-fg"
         >
-          <IconInfo className="h-[15px] w-[15px] shrink-0" />
-          {!collapsed && "About Prism"}
+          <IconInfo className="h-[17px] w-[17px]" />
         </a>
         <button
           onClick={toggle}
           title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className={`flex items-center gap-3 py-2 font-mono text-xs tracking-[0.06em] text-muted uppercase transition-colors duration-[var(--dur-micro)] ease-out hover:text-fg ${
-            collapsed ? "justify-center px-0" : "px-3"
-          }`}
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          className="flex h-9 w-9 items-center justify-center rounded-md text-muted transition-colors duration-[var(--dur-micro)] ease-out hover:bg-surface-2 hover:text-fg"
         >
-          <IconCollapse collapsed={collapsed} className="h-[15px] w-[15px] shrink-0" />
-          {!collapsed && "Collapse"}
+          <IconCollapse collapsed={collapsed} className="h-[17px] w-[17px]" />
         </button>
       </div>
     </aside>

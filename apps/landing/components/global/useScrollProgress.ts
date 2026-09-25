@@ -8,8 +8,7 @@ import { useEffect, useRef, useState } from "react";
  * top has scrolled one full viewport height above it). For restrained,
  * scroll-linked exit/parallax accents only — entrances stay on fixed-delay
  * CSS keyframes. Reads native scroll position via a passive listener; it
- * attaches no wheel handling of its own, so it never competes with the
- * Lenis driver in SmoothScroll.
+ * attaches no wheel handling of its own, so it never fights native scroll.
  */
 export function useScrollProgress<T extends HTMLElement>() {
   const ref = useRef<T>(null);

@@ -28,12 +28,12 @@ export function EcosystemSwitcher() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Switch Prism app"
-        className="flex h-9 w-9 items-center justify-center border border-line-soft text-muted transition-colors duration-[var(--dur-micro)] ease-out hover:border-line-strong hover:text-fg"
+        className="flex h-9 w-9 items-center justify-center rounded-lg border border-line-soft text-muted transition-colors duration-[var(--dur-micro)] ease-out hover:border-line-strong hover:text-fg"
       >
         <IconGrid className="h-4 w-4" />
       </button>
       {open && (
-        <div className="absolute right-0 top-[calc(100%+8px)] z-[var(--z-overlay)] w-56 border border-line-soft bg-surface-2">
+        <div className="absolute right-0 top-[calc(100%+8px)] z-[var(--z-overlay)] w-56 overflow-hidden rounded-xl border border-line-soft bg-surface-2">
           {APPS.map((a) => (
             <a
               key={a.label}

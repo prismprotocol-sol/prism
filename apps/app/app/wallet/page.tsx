@@ -2,7 +2,8 @@
 
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import { CLUSTER, PRISM_PROGRAM_ID, explorerUrl } from "@prism/config";
-import { Card, Stat, Empty, PageHeader } from "@prism/ui";
+import { Stat, Empty, PageHeader, CopyButton } from "@prism/ui";
+import { Card } from "@/components/ui";
 
 export default function WalletPage() {
   const { publicKey, wallet } = useWallet();
@@ -21,14 +22,17 @@ export default function WalletPage() {
             <Stat
               label="Address"
               value={
-                <a
-                  href={explorerUrl(publicKey.toBase58(), "address")}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="underline underline-offset-2 hover:text-muted"
-                >
-                  {publicKey.toBase58().slice(0, 4)}…{publicKey.toBase58().slice(-4)}
-                </a>
+                <span className="inline-flex items-center gap-2">
+                  <a
+                    href={explorerUrl(publicKey.toBase58(), "address")}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline underline-offset-2 hover:text-muted"
+                  >
+                    {publicKey.toBase58().slice(0, 4)}…{publicKey.toBase58().slice(-4)}
+                  </a>
+                  <CopyButton value={publicKey.toBase58()} />
+                </span>
               }
             />
             <Stat label="Cluster" value={CLUSTER} />
@@ -36,14 +40,17 @@ export default function WalletPage() {
             <Stat
               label="Prism program"
               value={
-                <a
-                  href={explorerUrl(PRISM_PROGRAM_ID, "address")}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="underline underline-offset-2 hover:text-muted"
-                >
-                  {PRISM_PROGRAM_ID.slice(0, 4)}…{PRISM_PROGRAM_ID.slice(-4)}
-                </a>
+                <span className="inline-flex items-center gap-2">
+                  <a
+                    href={explorerUrl(PRISM_PROGRAM_ID, "address")}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline underline-offset-2 hover:text-muted"
+                  >
+                    {PRISM_PROGRAM_ID.slice(0, 4)}…{PRISM_PROGRAM_ID.slice(-4)}
+                  </a>
+                  <CopyButton value={PRISM_PROGRAM_ID} />
+                </span>
               }
             />
           </div>

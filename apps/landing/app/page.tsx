@@ -1,7 +1,6 @@
 import Header from "@/components/global/Header";
 import Shell from "@/components/global/Shell";
 import LoadingScreen from "@/components/global/LoadingScreen";
-import SmoothScroll from "@/components/global/SmoothScroll";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
 // import Services from "@/components/sections/Services";
@@ -17,7 +16,6 @@ import Footer from "@/components/sections/Footer";
 export default function Home() {
   return (
     <>
-      <SmoothScroll />
       <LoadingScreen />
       <Header />
       <Shell>

@@ -5,20 +5,25 @@ import Link from "next/link";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
 import { BN } from "@coral-xyz/anchor";
-import { useVaults, useCommitments, useTokenBalances, fmt, pct, redemptionValueBps, attachment, TRANCHES, type Seniority } from "@prism/solana";
-import { Card, Stat, StatusTag, Note, Empty, PageHeader } from "@prism/ui";
+import { useTokenBalances, fmt, pct, redemptionValueBps, attachment, TRANCHES, type Seniority } from "@prism/solana";
+import { Stat, StatusTag, Note, Empty, PageHeader } from "@prism/ui";
+import { Card } from "@/components/ui";
+import { useNow } from "@/lib/useNow";
+import { useAppData } from "@/components/DataProvider";
+import { AllocationDonut } from "@/components/charts/AllocationDonut";
+import { PortfolioGrowthChart } from "@/components/charts/PortfolioGrowthChart";
+import { TRANCHE_DOT } from "@/lib/trancheColor";
 
 export default function PortfolioPage() {
   const { connected } = useWallet();
-  const { vaults } = useVaults();
-  const { items: commitments } = useCommitments();
+  const { vaults, commitments } = useAppData();
 
   const trancheMints = useMemo(
     () => vaults.flatMap((v) => v.tranches.map((t) => t.mint).filter((m) => !m.equals(PublicKey.default))),
     [vaults]
   );
   const { balances } = useTokenBalances(trancheMints);
-  const now = Math.floor(Date.now() / 1000);
+  const now = useNow();
 
   const positions = useMemo(() => {
     return commitments
@@ -46,6 +51,21 @@ export default function PortfolioPage() {
     return { invested, current, gain: current.sub(invested) };
   }, [positions]);
 
+  const hasAccruingPositions = positions.some((p) => !p.redeemed && (p.vault.state === "active" || p.vault.state === "matured"));
+
+  const allocation = useMemo(() => {
+    const bySeniority = new Map<Seniority, BN>();
+    for (const p of positions) {
+      if (p.redeemed) continue;
+      bySeniority.set(p.seniority, (bySeniority.get(p.seniority) ?? new BN(0)).add(p.current));
+    }
+    return TRANCHES.map((t) => ({
+      label: t.label,
+      value: bySeniority.get(t.id as Seniority) ?? new BN(0),
+      seniority: t.id as Seniority,
+    }));
+  }, [positions]);
+
   if (!connected) {
     return (
       <div className="px-10 py-10">
@@ -64,20 +84,51 @@ export default function PortfolioPage() {
         description="Valued at redemption value — what the contract owes — not market price."
       />
 
-      <Card>
-        <div className="grid grid-cols-3 gap-4">
-          <Stat label="Invested" value={`$${fmt(totals.invested)}`} />
-          <Stat label="Redemption value" value={`$${fmt(totals.current)}`} />
-          <Stat
-            label="Accrued"
-            value={`${totals.gain.isNeg() ? "" : "+"}$${fmt(totals.gain)}`}
-            sub={`${gainPct >= 0 ? "+" : ""}${gainPct.toFixed(2)}%`}
-          />
-        </div>
+      <div className="grid gap-4 md:grid-cols-[1.6fr_1fr]">
+        <Card>
+          <div className="grid grid-cols-3 gap-4">
+            <Stat label="Invested" value={`$${fmt(totals.invested)}`} />
+            <Stat label="Redemption value" value={`$${fmt(totals.current)}`} />
+            <Stat
+              label="Accrued"
+              value={
+                <span className={totals.gain.isZero() ? "text-fg" : totals.gain.isNeg() ? "text-muted-2" : "text-accent"}>
+                  {totals.gain.isNeg() ? "" : "+"}${fmt(totals.gain)}
+                </span>
+              }
+              sub={`${gainPct >= 0 ? "+" : ""}${gainPct.toFixed(2)}%`}
+            />
+          </div>
+        </Card>
+        {positions.length > 0 && (
+          <Card title="Allocation" subtitle="by tranche">
+            <AllocationDonut segments={allocation} />
+          </Card>
+        )}
+      </div>
+
+      <Card title="Portfolio growth" subtitle="redemption value, realized → projected">
+        {hasAccruingPositions ? (
+          <PortfolioGrowthChart positions={positions} now={now} className="h-28" />
+        ) : (
+          <div className="flex h-28 items-center justify-center rounded-lg border border-dashed border-line-soft">
+            <span className="max-w-xs text-center font-mono text-xs text-muted-2">
+              {positions.length === 0
+                ? "Commit to a vault to start tracking growth here."
+                : "Your positions are still in funding — growth appears once a vault activates."}
+            </span>
+          </div>
+        )}
       </Card>
 
       <section className="space-y-3">
-        <h2 className="font-sans text-sm text-fg">Tranche positions ({positions.length})</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="font-sans text-sm text-fg">Tranche positions ({positions.length})</h2>
+          <span className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.08em] text-muted uppercase">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" aria-hidden="true" />
+            Live
+          </span>
+        </div>
         {positions.length === 0 ? (
           <Empty>
             None yet.{" "}
@@ -87,40 +138,68 @@ export default function PortfolioPage() {
             .
           </Empty>
         ) : (
-          <div className="space-y-3">
-            {positions.map((p, i) => {
-              const meta = TRANCHES.find((t) => t.id === p.seniority)!;
-              const delta = p.current.sub(p.amount);
-              return (
-                <div key={i} className="border border-line-soft p-4">
-                  <div className="mb-3 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="font-sans text-sm text-fg">{meta.name}</span>
-                      <span className="font-mono text-xs text-muted">{meta.risk}</span>
-                      {p.redeemed && <StatusTag label="redeemed" tone="muted" />}
+          <div className="overflow-hidden rounded-xl border border-line-soft">
+            <div className="grid grid-cols-[1.8fr_0.9fr_0.8fr_1fr_1fr_0.8fr_0.3fr] gap-4 border-b border-line-soft px-6 py-4 font-mono text-[11px] tracking-[0.06em] text-muted uppercase">
+              <span>Tranche</span>
+              <span>Principal</span>
+              <span>Rate</span>
+              <span>Redemption</span>
+              <span>Value</span>
+              <span>Tokens</span>
+              <span />
+            </div>
+            <div>
+              {positions.map((p, i) => {
+                const meta = TRANCHES.find((t) => t.id === p.seniority)!;
+                const delta = p.current.sub(p.amount);
+                const dotClass = TRANCHE_DOT[p.seniority];
+                const base58 = p.vault.address.toBase58();
+                return (
+                  <Link
+                    key={i}
+                    href={`/vaults/${base58}`}
+                    className="grid grid-cols-[1.8fr_0.9fr_0.8fr_1fr_1fr_0.8fr_0.3fr] items-center gap-4 border-b border-line-soft px-6 py-4 transition-colors duration-[var(--dur-micro)] ease-out last:border-b-0 hover:bg-surface-2"
+                  >
+                    <div className="flex min-w-0 items-center gap-2.5">
+                      <span className={`h-2 w-2 shrink-0 rounded-full ${dotClass}`} aria-hidden="true" />
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-sm text-fg">{meta.name}</span>
+                          {p.redeemed && <StatusTag label="redeemed" tone="muted" />}
+                        </div>
+                        <div className="truncate font-mono text-[11px] text-muted-2">
+                          {meta.risk} · {base58.slice(0, 10)}…
+                          {!p.tranche.loss.isZero() && ` · absorbed $${fmt(p.tranche.loss, 0)} loss`}
+                        </div>
+                      </div>
                     </div>
-                    <Link
-                      href={`/vaults/${p.vault.address.toBase58()}`}
-                      className="font-mono text-xs text-muted hover:text-fg"
-                    >
-                      {p.vault.address.toBase58().slice(0, 16)}… →
-                    </Link>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
-                    <Stat label="Principal" value={`$${fmt(p.amount, 0)}`} />
-                    <Stat label="Rate" value={p.vault.state === "funding" ? "pending" : pct(p.tranche.clearingBps)} />
-                    <Stat label="Redemption" value={(p.rvBps / 10_000).toFixed(4)} sub={`attach ${pct(p.lo, 0)}–${pct(p.hi, 0)}`} />
-                    <Stat label="Value" value={`$${fmt(p.current, 0)}`} sub={`${delta.isNeg() ? "" : "+"}$${fmt(delta)}`} />
-                    <Stat label="Tokens held" value={fmt(p.held, 0)} sub={p.held.isZero() ? "not claimed" : undefined} />
-                  </div>
-                  {!p.tranche.loss.isZero() && (
-                    <div className="mt-3 border-t border-line-soft pt-2 font-mono text-xs text-muted-2">
-                      Tranche absorbed ${fmt(p.tranche.loss, 0)} of loss
+                    <span className="font-mono text-sm text-fg tabular-nums">${fmt(p.amount, 0)}</span>
+                    <span className="font-mono text-sm text-fg tabular-nums">
+                      {p.vault.state === "funding" ? "pending" : pct(p.tranche.clearingBps)}
+                    </span>
+                    <div className="font-mono text-sm text-fg tabular-nums">
+                      {(p.rvBps / 10_000).toFixed(4)}
+                      <div className="font-mono text-[10px] text-muted-2">
+                        attach {pct(p.lo, 0)}–{pct(p.hi, 0)}
+                      </div>
                     </div>
-                  )}
-                </div>
-              );
-            })}
+                    <div className="font-mono text-sm tabular-nums">
+                      <span className="text-fg">${fmt(p.current, 0)}</span>
+                      <div className={`font-mono text-[10px] ${delta.isZero() || delta.isNeg() ? "text-muted-2" : "text-accent"}`}>
+                        {delta.isNeg() ? "" : "+"}${fmt(delta)}
+                      </div>
+                    </div>
+                    <span className="font-mono text-sm text-fg tabular-nums">
+                      {fmt(p.held, 0)}
+                      {p.held.isZero() && <span className="block font-mono text-[10px] text-muted-2">not claimed</span>}
+                    </span>
+                    <span className="text-right font-mono text-xs text-muted-2" aria-hidden="true">
+                      →
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         )}
       </section>

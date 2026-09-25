@@ -129,18 +129,6 @@
 /* Tailwind's preflight already resets box-sizing, margin/padding, and
    img/video sizing — only the site-specific pieces are added here. */
 
-/* Lenis smooth-scroll: keep native scrollbar/behavior, just smooth the motion. */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
 /* ------------------------- Landing-only decorative effects ------------------------- */
 
 /* GlobeIcon's rotating meridians: transform-box/transform-origin have no

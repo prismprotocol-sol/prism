@@ -34,6 +34,27 @@ export type VaultView = {
   tranches: TrancheView[];
 };
 
+/**
+ * Retries a flaky RPC call with backoff. The free public devnet endpoint
+ * rate-limits aggressively (429) — without this, a transient rate-limit on
+ * a `.all()` scan silently looks identical to "this account/list is
+ * genuinely empty," which is actively misleading (e.g. a holder count
+ * reading 0 because the request was throttled, not because there are no
+ * holders).
+ */
+async function withRetry<T>(fn: () => Promise<T>, attempts = 4, baseDelayMs = 500): Promise<T> {
+  let lastErr: unknown;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await fn();
+    } catch (e) {
+      lastErr = e;
+      if (i < attempts - 1) await new Promise((r) => setTimeout(r, baseDelayMs * 2 ** i));
+    }
+  }
+  throw lastErr;
+}
+
 const READ_ONLY_ERROR = "Connect a wallet to sign transactions.";
 
 /** Lets reads (vault/config/pool listings) work before a wallet connects; any signing attempt throws. */
@@ -95,12 +116,11 @@ export function useVaults() {
     if (!program) return;
     setLoading(true);
     try {
-      const all = await (program.account as any).vault.all();
-      setVaults(
-        all.map((a: any) => decodeVault(a.publicKey, a.account))
-      );
+      const all = await withRetry<any>(() => (program.account as any).vault.all());
+      setVaults(all.map((a: any) => decodeVault(a.publicKey, a.account)));
     } catch {
-      setVaults([]);
+      // Keep the last known-good list rather than flashing to empty on a
+      // transient RPC failure that survived the retries above.
     } finally {
       setLoading(false);
     }
@@ -121,10 +141,10 @@ export function useConfig() {
   const refresh = useCallback(async () => {
     if (!program) return;
     try {
-      const c = await (program.account as any).config.fetch(configPda());
+      const c = await withRetry<any>(() => (program.account as any).config.fetch(configPda()));
       setConfig(c);
     } catch {
-      setConfig(null);
+      // Keep the last known-good config rather than flashing to null.
     }
   }, [program]);
 
@@ -149,12 +169,12 @@ export function useCommitments() {
       return;
     }
     try {
-      const all = await (program.account as any).commitment.all([
-        { memcmp: { offset: 8 + 1 + 32, bytes: publicKey.toBase58() } },
-      ]);
+      const all = await withRetry<any>(() =>
+        (program.account as any).commitment.all([{ memcmp: { offset: 8 + 1 + 32, bytes: publicKey.toBase58() } }])
+      );
       setItems(all.map((a: any) => ({ address: a.publicKey, account: a.account })));
     } catch {
-      setItems([]);
+      // Keep the last known-good list rather than flashing to empty.
     }
   }, [program, publicKey]);
 
@@ -163,6 +183,49 @@ export function useCommitments() {
   }, [refresh]);
 
   return { items, refresh };
+}
+
+/**
+ * Every commitment against a specific vault, across all investors — for
+ * holder counts, not the connected wallet's own positions. `commitment` is
+ * laid out as `discriminator(8) + bump(1) + vault(32) + investor(32) +
+ * seniority(1) + amount(8) + redeemed(1) + payout(8)` (packages/solana/src/idl.json),
+ * so `vault` sits right after the 1-byte bump, at offset 9. Works without a
+ * connected wallet, since it's not scoped to one.
+ */
+export function useVaultCommitments(vaultAddress: PublicKey | null) {
+  const program = useProgram();
+  const [items, setItems] = useState<
+    { address: PublicKey; account: Record<string, any> }[]
+  >([]);
+  const [loading, setLoading] = useState(false);
+
+  const refresh = useCallback(async () => {
+    if (!program || !vaultAddress) {
+      setItems([]);
+      return;
+    }
+    setLoading(true);
+    try {
+      const all = await withRetry<any>(() =>
+        (program.account as any).commitment.all([{ memcmp: { offset: 9, bytes: vaultAddress.toBase58() } }])
+      );
+      setItems(all.map((a: any) => ({ address: a.publicKey, account: a.account })));
+    } catch {
+      // Keep the last known-good list (e.g. a holder count) rather than
+      // flashing to empty on a transient RPC failure that survived the
+      // retries above — an empty result here reads as "zero holders,"
+      // which would be actively wrong, not just stale.
+    } finally {
+      setLoading(false);
+    }
+  }, [program, vaultAddress]);
+
+  useEffect(() => {
+    refresh();
+  }, [refresh]);
+
+  return { items, loading, refresh };
 }
 
 export { vaultPda };

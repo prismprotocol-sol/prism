@@ -1,6 +1,39 @@
 @import "tailwindcss";
 @import "@prism/ui/styles/tokens.css";
 
+/* ------------------------- Design-system overrides (Exponent-inspired) ------------------------- */
+/* Redeclares tokens @prism/ui's tokens.css already defines, scoped to this
+   app only via CSS's normal "last declaration wins" cascade — every
+   `border-line`/`border-line-soft`/`border-line-strong` usage across this
+   app (including inside shared @prism/ui components) repaints to a
+   near-black tonal divider instead of a white-opacity one, with zero
+   per-component edits. admin/borrow/landing import tokens.css directly and
+   never see this override. */
+@theme {
+  --color-line-soft: #151515;
+  --color-line: #1a1a1a;
+  --color-line-strong: #232323;
+
+  /* New — this app's one accent color. Used only on the wallet-connect CTA,
+     APY/coupon figures, step numbers, and text links — never as a border or
+     a secondary-button fill — matching how the reference app scopes it.
+     Values pixel-sampled directly off the reference screenshot (its
+     Connect Wallet button and filled "See All Markets" pill), matching the
+     earlier computed-style extraction from the live site almost exactly. */
+  --color-accent: #ecc087;
+  --color-accent-bg: #1d1815;
+
+  /* Per-tranche identity color — Alpha (junior, first-loss) through Prime
+     (senior, paid first) read as a warm-to-cool risk gradient, distinct
+     from --color-accent so a tranche dot is never confused with "the"
+     accent-reserved APY/CTA meaning. Used only for the small seniority
+     dot/tag next to a tranche name, never for large fills or text blocks —
+     stays a labeling device, not a second accent. */
+  --color-alpha: #c1665c;
+  --color-core: #c2a15e;
+  --color-prime: #6e9c93;
+}
+
 /* Entrance choreography for list/grid content (cards, table rows) — a
    restrained fade+rise, staggered per-item via an inline `--i` custom
    property rather than N named animations. */
@@ -31,13 +64,4 @@
       transform: translateY(0);
     }
   }
-}
-
-/* Lenis smooth-scroll targets the <main> scroll pane directly (not
-   document.documentElement), so these classes land on that element. */
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
 }
