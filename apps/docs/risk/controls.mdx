@@ -1,0 +1,46 @@
+---
+title: "The four controls"
+description: "In order of importance: controlled collections, true sale, an automatic stop, and first loss."
+---
+
+## Collections land where the originator cannot reach them
+
+For stablecoin repayments this is enforced by the contracts. For fiat, it is a
+controlled account with an independent trustee.
+
+<Note>
+  This is the single most important protection.
+</Note>
+
+Detail: [controlled collections](/concepts/controlled-collections).
+
+## The invoices legally belong to the pool company
+
+Each pool is a separate legal entity that buys the receivables outright. If the
+originator goes bankrupt, its other creditors cannot reach them.
+
+This is why per-pool isolation exists in the contracts as well as in the legal
+structure — one pool's failure cannot touch another. See
+[contract mechanics](/architecture/contracts-v1).
+
+## Weekly collection data, with an automatic stop
+
+If collections fall below 90% of what was expected, the pool halts new purchases by
+itself and routes all incoming cash to repaying investors. No vote, no delay, no
+discretion.
+
+Detail: [the collection tripwire](/concepts/collection-tripwire).
+
+## The originator's own money is deposited first
+
+At least 15% of the pool, checked by the contracts before the pool can open.
+
+Detail: [first loss](/concepts/first-loss).
+
+---
+
+## What these four do not cover
+
+Between them they address diversion, bankruptcy, deterioration and alignment. They
+do not address a loan tape that does not describe reality in the first place —
+that needs independent verification, which [arrives later](/risk/limits).

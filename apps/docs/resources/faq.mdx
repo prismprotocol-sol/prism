@@ -1,0 +1,147 @@
+---
+title: "FAQ"
+description: "Common questions, answered from what PRISM has actually decided."
+---
+
+## About PRISM
+
+<AccordionGroup>
+  <Accordion title="Is PRISM a lender?">
+    No. PRISM never makes a loan, never holds one on its balance sheet, and is never
+    the lender of record. That is a deliberate design choice — it is what keeps PRISM
+    out of lending licences and out of credit risk.
+  </Accordion>
+  <Accordion title="Does PRISM replace the originator's bank?">
+    No. The bank's money is cheaper and always will be, because it is priced off the
+    US base rate. PRISM funds the part above the bank's advance rate, and competes
+    with the originator's own equity instead.
+  </Accordion>
+  <Accordion title="How does PRISM make money?">
+    A structuring fee when a pool is issued (50–100 bps) and a servicing fee on notes
+    outstanding (75–150 bps). No performance fee and no share of returns — PRISM is
+    paid the same whether the pool performs or fails. See
+    [what PRISM earns](/economics/fees).
+  </Accordion>
+  <Accordion title="Has PRISM funded anything?">
+    No. Zero loans originated, zero capital deployed, zero pools funded. The tranche
+    mechanics run on Solana devnet only. No originator signed, no credit investor
+    signed, no audit, no legal entity. See [Where things stand](/status).
+  </Accordion>
+</AccordionGroup>
+
+## For investors
+
+<AccordionGroup>
+  <Accordion title="Can I exit before maturity?">
+    No. Pools run 30 to 90 days and there is no redemption before maturity in version
+    one — no AMM, no secondary market, no reserve. A 60-day lock is the price of
+    capital that is never lazy. See [liquidity](/investors/liquidity).
+  </Accordion>
+  <Accordion title="Why is the junior note only ~16%?">
+    Because it is second loss, not first loss. The originator's 15% absorbs the first
+    losses, so pALPHA does not carry true first-loss risk and is not priced as if it
+    does. See [why the rates are what they are](/investors/pricing).
+  </Accordion>
+  <Accordion title="Why can't the senior note pay less than 7%?">
+    That floor is set outside the pool. Maple pays roughly 5% on overcollateralised,
+    zero-loss, instantly redeemable paper, so a senior note on an unrated receivables
+    pool has to pay meaningfully more or there is no reason to hold it.
+  </Accordion>
+  <Accordion title="Are the rates guaranteed?">
+    No. They are targets — our estimates of what each layer should pay — and they will
+    move when real buyers price them. No real buyer has priced any PRISM note.
+  </Accordion>
+  <Accordion title="Who can invest?">
+    Pool one is open to KYC-checked professional investors only. US persons and
+    sanctioned jurisdictions are blocked at the token level, not only on the website.
+    See [who this is for](/investors/eligibility).
+  </Accordion>
+  <Accordion title="Does tranching make the pool safer?">
+    No. Tranching does not reduce losses — it changes who absorbs them and in what
+    order. A pool that loses 30% still loses 30%.
+  </Accordion>
+</AccordionGroup>
+
+## For originators
+
+<AccordionGroup>
+  <Accordion title="What does it cost?">
+    Roughly 11% a year, all in, on the slice PRISM funds. More than a bank charges,
+    less than your own equity costs you.
+  </Accordion>
+  <Accordion title="Why do I have to fund 15% myself?">
+    Two reasons. It absorbs normal credit loss, and — more importantly — it is what
+    makes the notes sellable to anyone else. An originator with nothing at stake has
+    no reason to underwrite carefully or collect diligently. Pool one requires 25%.
+  </Accordion>
+  <Accordion title="Why does my loan book have to earn 15%?">
+    Below that there is not enough spread to pay investors, cover losses and leave you
+    a profit. The senior floor is set outside the pool and senior is the largest
+    layer, so it drives most of the cost of funds. See
+    [minimum asset yield](/economics/minimum-asset-yield).
+  </Accordion>
+  <Accordion title="Why do my receivables have to be in dollars?">
+    If your invoices are in local currency and our investors hold USDC, somebody
+    carries the currency risk, and hedging it costs 4–5% a year, which breaks the
+    economics for everyone. Local-currency pools depend on Circle's StableFX, which
+    is on the roadmap and not yet in use.
+  </Accordion>
+  <Accordion title="Do I need my bank's permission?">
+    Yes. Most credit facilities forbid pledging the same receivables elsewhere. We
+    work inside their structure, not around it.
+  </Accordion>
+  <Accordion title="How fast can a pool fund?">
+    Weeks, not days. We are not faster than your bank in an emergency. If you need
+    money in ten days, use your existing line.
+  </Accordion>
+</AccordionGroup>
+
+## Risk
+
+<AccordionGroup>
+  <Accordion title="What is the biggest risk?">
+    The originator, not the end borrowers. The originator finds the loans, collects
+    the money, and reports the numbers — and you are not in the room. See
+    [the originator problem](/concepts/the-originator-problem).
+  </Accordion>
+  <Accordion title="What happened to Goldfinch?">
+    Its dashboard showed roughly 20% losses while one investor found the real figure
+    was near 70%. One borrower moved \$1.9M of loan money to a struggling parent
+    company. Documented losses reached about \$18M and it wound down in June 2026.
+    See [the case study](/risk/goldfinch).
+  </Accordion>
+  <Accordion title="Is the 4% expected loss rate reliable?">
+    No. It has never been measured. It is a placeholder that will be replaced by data
+    from the shadow pool, or by the price a professional credit investor demands for
+    holding pALPHA — whichever comes first.
+  </Accordion>
+  <Accordion title="Has PRISM been audited?">
+    No. A scoped security audit by a named firm is part of M3 on the roadmap. See
+    [security](/resources/security).
+  </Accordion>
+  <Accordion title="What can't be protected with code?">
+    Anything after cash touches an ordinary bank account. At that point protection
+    depends on a trustee, a contract and a legal system. That boundary is exactly
+    where Goldfinch lost control, and no smart contract closes it. See
+    [limits](/risk/limits).
+  </Accordion>
+</AccordionGroup>
+
+## Technical
+
+<AccordionGroup>
+  <Accordion title="Why two chains?">
+    The pool needs fiat at both ends and institutional senior buyers, which is Arc.
+    Risk-seeking capital that will hold a junior tranche is abundant on Solana. Asking
+    either side to move loses one of them. See
+    [architecture](/architecture/overview).
+  </Accordion>
+  <Accordion title="Which chain is live?">
+    Neither, for real capital. Three tranches run on Solana devnet as a mechanics
+    test. Arc mainnet deployment is M1; Solana distribution is M5.
+  </Accordion>
+  <Accordion title="Is the code public?">
+    Publishing the repository and deployed addresses is part of the definition of done
+    for M1. See [the roadmap](/roadmap).
+  </Accordion>
+</AccordionGroup>

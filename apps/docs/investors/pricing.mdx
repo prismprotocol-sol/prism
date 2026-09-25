@@ -1,0 +1,43 @@
+---
+title: "Why the rates are what they are"
+description: "The senior floor is set outside the pool. The junior note is priced as second loss."
+---
+
+## The senior floor
+
+pPRIME has a floor around 7%. Maple pays roughly 5% on overcollateralised,
+zero-loss, instantly redeemable paper. A senior note on an unrated receivables
+pool has to pay meaningfully more than that or there is no reason to hold it.
+
+<Note>
+  That floor is set outside the pool. It is not a number PRISM chooses — it is what
+  investors can earn elsewhere for less risk and better liquidity.
+</Note>
+
+This matters more than it looks. Senior is the largest layer, so it sets most of
+the cost of funds, which in turn sets the minimum yield the underlying loan book
+has to earn. See
+[why the asset has to earn 15% or more](/economics/minimum-asset-yield).
+
+## Why pALPHA is ~16% and not ~26%
+
+pALPHA is priced as second loss, not first loss. The originator's 15% absorbs the
+first losses, so pALPHA does not carry true first-loss risk and is not priced as
+if it does.
+
+True first-loss capital — taking the very first dollar of loss — would demand far
+more. The originator's deposit is what makes the junior note a second-loss
+position, and that position is what the ~16% reflects.
+
+## What would move these numbers
+
+| Rate | Moves when |
+|---|---|
+| pPRIME · 7.5–9% | What comparable low-risk paper pays elsewhere changes. |
+| pCORE · ~11% | Real mezzanine buyers price the layer. |
+| pALPHA · ~16% | A professional credit investor states their price. |
+
+<Warning>
+  All three are targets, not guarantees. No real buyer has priced any PRISM note.
+  Everything here is an estimate of what each layer should pay.
+</Warning>

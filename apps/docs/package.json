@@ -1,0 +1,15 @@
+{
+  "name": "@prism/docs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "mint dev",
+    "build": "mint validate",
+    "export": "mint export",
+    "check:links": "mint broken-links",
+    "check:a11y": "mint a11y"
+  },
+  "devDependencies": {
+    "mint": "^4.2.537"
+  }
+}

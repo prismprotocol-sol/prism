@@ -1,0 +1,46 @@
+---
+title: "The Goldfinch case study"
+description: "A dashboard showing 20% losses against a real figure near 70%."
+---
+
+Goldfinch is the case study. Its dashboard showed roughly 20% losses while one
+investor found the real figure was near 70%. One borrower moved \$1.9M of loan
+money to a struggling parent company. Total documented losses across the protocol
+reached about \$18M, and it wound down in June 2026.
+
+## What went wrong, in order
+
+| What happened | What it tells you |
+|---|---|
+| Reported losses ~20%; actual near 70% | The reporting layer, not the credit, was the failure. |
+| \$1.9M of loan money moved to a parent company | Cash left through a door no contract was watching. |
+| ~\$18M documented losses, wound down June 2026 | The structure did not contain it. |
+
+## Why tranching would not have saved it
+
+<Warning>
+  No tranche structure prevents any of that. Tranches decide who loses first. They
+  cannot stop money leaving through the wrong door.
+</Warning>
+
+A waterfall allocates losses it can see. Goldfinch's problem was that the losses
+were not visible, and that cash was moveable. Both of those are upstream of the
+waterfall.
+
+## What PRISM takes from it
+
+Each of [the four controls](/risk/controls) maps to a specific part of this
+failure:
+
+- Money moved to a parent company → **collections land where the originator cannot
+  reach them**, the single most important protection.
+- Losses under-reported → **weekly collection data with an automatic stop**.
+- Creditors reaching the receivables → **the invoices legally belong to the pool
+  company**.
+- No skin in the game → **the originator's own money deposited first**.
+
+## The uncomfortable part
+
+The boundary where Goldfinch lost control is a boundary PRISM also has. Once cash
+touches an ordinary bank account, protection depends on a trustee, a contract and a
+legal system. See [the honest limit](/risk/limits).

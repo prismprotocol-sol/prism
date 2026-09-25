@@ -1,0 +1,55 @@
+---
+title: "The notes"
+description: "Three notes against a pool of short-dated receivables, priced by position in the loss waterfall."
+---
+
+## What you are buying
+
+A note against a pool of short-dated receivables, in one of three layers. Each
+layer sits at a different point in the loss waterfall and is priced accordingly.
+
+| Note | Target rate | Starts losing when |
+|---|---|---|
+| pPRIME · senior | 7.5–9% | Pool losses exceed 40% |
+| pCORE · mezzanine | ~11% | Pool losses reach 21–25% |
+| pALPHA · junior | ~16% | Pool losses reach 15–21% |
+
+Beneath all three sits the originator's own money, at least 15% of the pool,
+which is destroyed first.
+
+<Note>
+  Rates are targets, not guarantees. They are our estimates of what each layer
+  should pay, and they will move when real buyers price them. See
+  [Disclosures](/disclosures).
+</Note>
+
+## Choosing a layer
+
+<Columns cols={3}>
+  <Card title="pPRIME · senior" icon="shield">
+    Paid first, loses last. The largest and cheapest layer. Often already filled by
+    the originator's own bank, in which case PRISM does not raise it.
+  </Card>
+  <Card title="pCORE · mezzanine" icon="layers">
+    The middle. For professional investors who want more than senior pays without
+    taking the junior position.
+  </Card>
+  <Card title="pALPHA · junior" icon="chart-candlestick">
+    Paid last, loses early. Intended for a professional credit investor who also
+    judges the originator.
+  </Card>
+</Columns>
+
+## Who holds pALPHA matters
+
+The junior note is not just the highest-paying layer. It is intended for an
+investor who does their own diligence on the originator — and whose willingness to
+hold it at a given price is itself the signal about whether the pool should exist.
+
+That is also why PRISM's 4% expected loss rate is a placeholder: the price a real
+credit investor demands for pALPHA is one of the two things that will replace it.
+
+## The pool term
+
+Pools run 30 to 90 days. There is no redemption before maturity in version one —
+see [liquidity](/investors/liquidity).

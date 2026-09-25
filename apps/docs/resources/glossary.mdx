@@ -1,0 +1,127 @@
+---
+title: "Glossary"
+description: "Plain-language definitions of every term used on this site."
+---
+
+<Note>
+  If a page on this site uses a word that is not defined here, that is a fault in the
+  page. A reader who does not know what a tranche is should be able to follow every
+  page.
+</Note>
+
+## The structure
+
+**Attachment point** — The pool loss level at which a given layer starts to lose
+money. Below it, untouched; above it, being eaten. See
+[attachment points](/concepts/attachment-points).
+
+**First loss** — The originator's own money, at least 15% of the pool, deposited
+before the pool opens and destroyed before any investor loses anything. See
+[first loss](/concepts/first-loss).
+
+**Junior** — The layer paid last and losing earliest, other than first loss. At
+PRISM this is pALPHA.
+
+**Mezzanine** — The middle layer, between junior and senior. At PRISM this is pCORE.
+
+**Senior** — The layer paid first and losing last. The largest and cheapest. Funded
+by a bank or credit fund, or by pPRIME investors where no bank is present.
+
+**Second loss** — A position that takes losses only after first loss is exhausted.
+pALPHA is second loss, which is why it is priced at ~16% rather than the much higher
+rate true first-loss capital would demand.
+
+**Tranche** — A position in the queue for both repayments and losses. Repayments
+enter at the top and work down; losses start at the bottom and work up. See
+[tranches](/concepts/tranches).
+
+**Waterfall** — The order in which repayments are distributed and losses are
+absorbed.
+
+## The notes
+
+**pPRIME** — The senior note. Target 7.5–9%.
+
+**pCORE** — The mezzanine note. Target ~11%.
+
+**pALPHA** — The junior note. Target ~16%. Intended for a professional credit
+investor who also judges the originator.
+
+<Note>
+  All three rates are targets, not guarantees. No real buyer has priced any PRISM
+  note. See [Disclosures](/disclosures).
+</Note>
+
+## The parties
+
+**Borrower** — The end customer who owes money on an invoice, BNPL balance or
+merchant advance. PRISM never lends to them and is never their lender of record.
+
+**Originator** — The lending company whose loan book the pool is built against. It
+finds the loans, collects the money, and reports the numbers — which is why it is
+[the concentrated risk](/concepts/the-originator-problem).
+
+**Pool company** — The separate legal entity that buys the receivables outright, so
+the originator's other creditors cannot reach them if it goes bankrupt.
+
+**Trustee** — The independent party controlling the fiat collections account.
+
+## The mechanics
+
+**Advance rate** — The share of a loan book a senior lender will lend against.
+Banks typically 70–75%, private credit funds 85–90%. PRISM funds part of what sits
+above that line.
+
+**Collection tripwire** — The automatic stop. Collections below 90% of expectation
+halt new purchases and route all cash to repaying investors. See
+[the collection tripwire](/concepts/collection-tripwire).
+
+**Controlled account** — An account the originator can see but cannot empty. See
+[controlled collections](/concepts/controlled-collections).
+
+**Loan tape** — The weekly report: every loan, its dates, amounts and payment
+history.
+
+**Receivable** — An amount a borrower owes: an unpaid invoice, a BNPL balance, a
+merchant advance.
+
+**Servicing fee** — What PRISM charges on notes outstanding, 75–150 bps.
+
+**Structuring fee** — What PRISM charges when a pool is issued, 50–100 bps.
+
+**Tenor** — How long the pool runs. PRISM pools are 30 to 90 days.
+
+**True sale** — The receivables legally belonging to the pool company rather than
+the originator.
+
+**Utilisation · deployment** — How much of the committed capital is actually working
+rather than idle. See [utilisation](/economics/utilisation).
+
+## Chains and rails
+
+**Arc** — Circle's Layer 1, live since 16 September 2026. EVM-compatible, USDC as
+native gas. Carries the pool.
+
+**CCTP** — Circle's cross-chain transfer protocol. The settlement rail beneath
+Gateway.
+
+**Gateway** — Lets an investor fund a pool from a unified USDC balance across
+chains.
+
+**Circle Mint** — Converts USDC to fiat and back, and supplies the institutional
+account behind controlled collections.
+
+**StableFX** — Circle's FX product. On PRISM's roadmap for local-currency pools; not
+yet in use.
+
+**USDC** — The dollar stablecoin every pool is denominated in.
+
+**USYC** — On the roadmap for capital held between pools; not yet in use.
+
+## Units
+
+**bps · basis points** — Hundredths of a percentage point. 100 bps is 1%.
+
+**Gross yield** — What the underlying loan book earns before losses, funding costs
+and fees. PRISM needs roughly 15–17%. See
+[minimum asset yield](/economics/minimum-asset-yield).

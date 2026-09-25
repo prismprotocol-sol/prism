@@ -1,0 +1,94 @@
+---
+title: "Welcome to PRISM"
+description: "PRISM funds the capital that sits between a senior lender's advance and an originator's own money."
+---
+
+A lending company has a loan book — unpaid invoices, BNPL balances, merchant
+advances. Its bank will lend against that book, but never all of it. Banks
+typically advance 70–75%, and private credit funds 85–90%. Everything above that
+line has to come from the lending company's own money.
+
+That own money is the most expensive capital it has. Every rupee tied up there is
+a rupee it cannot lend.
+
+PRISM funds part of that gap. Investors buy notes against the loan book, sorted
+into layers by how much risk each investor wants. The originator keeps lending,
+and frees up its own capital to grow.
+
+<Warning>
+  PRISM has originated no loans and deployed no capital. The tranche mechanics run
+  on devnet. Everything on this site describes a system being built, not one with a
+  track record. See [Where things stand](/status) and [Disclosures](/disclosures).
+</Warning>
+
+## What PRISM is not
+
+PRISM is not a lender. It never makes a loan, never holds one on its balance
+sheet, and is never the lender of record. That is a deliberate design choice, not
+a technicality — it is what keeps PRISM out of lending licences and out of credit
+risk.
+
+PRISM also does not compete with the originator's bank. The bank's money is
+cheaper and always will be, because it is priced off the US base rate. PRISM
+competes with the originator's own equity, which is far more expensive.
+
+## How PRISM earns
+
+A structuring fee when a pool is created, and a servicing fee on the notes
+outstanding. PRISM is paid the same whether the pool performs well or badly,
+which is the point — it means PRISM has no incentive to hide a bad pool, and no
+balance sheet exposed to one.
+
+## Where it runs
+
+<Columns cols={3}>
+  <Card title="Arc" icon="layers">
+    Circle's Layer 1 carries the pool — receivables, tranches, the waterfall and
+    the first-loss floor. USDC is the native gas token.
+  </Card>
+  <Card title="Solana" icon="waves">
+    Carries distribution. Junior and mezzanine risk capital is raised here.
+  </Card>
+  <Card title="USDC" icon="circle-dollar-sign">
+    Every pool is denominated in it. CCTP and Gateway move it between the two
+    chains.
+  </Card>
+</Columns>
+
+## Start here
+
+<Columns cols={2}>
+  <Card title="How it works" icon="layers" href="/how-it-works/four-layers">
+    The four layers, a worked example, and the life of a pool from onboarding to
+    maturity.
+  </Card>
+  <Card title="Core concepts" icon="book-open" href="/concepts/tranches">
+    What a tranche is, what first loss does, and why the originator is the risk
+    that matters.
+  </Card>
+</Columns>
+
+## Go further
+
+<Columns cols={3}>
+  <Card title="For originators" icon="building-2" href="/originators/overview">
+    What you get, what it costs, and what we need from you before a pool opens.
+  </Card>
+  <Card title="For investors" icon="chart-candlestick" href="/investors/the-notes">
+    The three notes, where each starts losing, and what you cannot do.
+  </Card>
+  <Card title="Risk and protections" icon="shield" href="/risk/overview">
+    The four controls, the Goldfinch case study, and where protection stops.
+  </Card>
+  <Card title="Economics" icon="calculator" href="/economics/where-the-money-goes">
+    Where the money goes, and why the asset has to earn 15% or more.
+  </Card>
+  <Card title="Architecture" icon="diagram-project" href="/architecture/overview">
+    Two chains, the Circle products in use, and what version one deliberately
+    excludes.
+  </Card>
+  <Card title="Disclosures" icon="triangle-alert" href="/disclosures">
+    What PRISM has not done, which numbers are assumptions, and the risks we
+    cannot remove.
+  </Card>
+</Columns>

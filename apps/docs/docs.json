@@ -1,0 +1,198 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "sequoia",
+  "name": "PRISM",
+  "description": "PRISM structures and funds the capital that sits between a senior lender and an originator's own money.",
+  "colors": {
+    "primary": "#0a0a0a",
+    "light": "#f2f2ef",
+    "dark": "#6d6d69"
+  },
+  "appearance": {
+    "default": "system",
+    "strict": false
+  },
+  "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "/"
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Introduction",
+        "icon": "book-open",
+        "pages": [
+          "index",
+          "status"
+        ]
+      },
+      {
+        "group": "How it works",
+        "icon": "layers",
+        "pages": [
+          "how-it-works/four-layers",
+          "how-it-works/worked-example",
+          "how-it-works/life-of-a-pool",
+          "how-it-works/why-short-tenor"
+        ]
+      },
+      {
+        "group": "Core concepts",
+        "icon": "lightbulb",
+        "pages": [
+          "concepts/tranches",
+          "concepts/first-loss",
+          "concepts/attachment-points",
+          "concepts/the-originator-problem",
+          "concepts/controlled-collections",
+          "concepts/collection-tripwire"
+        ]
+      },
+      {
+        "group": "For originators",
+        "icon": "building-2",
+        "pages": [
+          "originators/overview",
+          "originators/requirements",
+          "originators/your-numbers"
+        ]
+      },
+      {
+        "group": "For investors",
+        "icon": "chart-candlestick",
+        "pages": [
+          "investors/the-notes",
+          "investors/pricing",
+          "investors/liquidity",
+          "investors/risks",
+          "investors/eligibility"
+        ]
+      },
+      {
+        "group": "Risk and protections",
+        "icon": "shield",
+        "pages": [
+          "risk/overview",
+          "risk/goldfinch",
+          "risk/controls",
+          "risk/limits"
+        ]
+      },
+      {
+        "group": "Economics",
+        "icon": "calculator",
+        "pages": [
+          "economics/where-the-money-goes",
+          "economics/minimum-asset-yield",
+          "economics/fees",
+          "economics/utilisation"
+        ]
+      },
+      {
+        "group": "Architecture",
+        "icon": "diagram-project",
+        "pages": [
+          "architecture/overview",
+          "architecture/why-arc",
+          "architecture/solana-distribution",
+          "architecture/circle-products",
+          "architecture/contracts-v1"
+        ]
+      },
+      {
+        "group": "Roadmap",
+        "icon": "map",
+        "pages": [
+          "roadmap"
+        ]
+      },
+      {
+        "group": "Resources",
+        "icon": "library",
+        "pages": [
+          "resources/glossary",
+          "resources/faq",
+          "resources/security",
+          "disclosures"
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Glossary",
+        "href": "/resources/glossary"
+      },
+      {
+        "label": "Disclosures",
+        "href": "/disclosures"
+      }
+    ]
+  },
+  "footer": {
+    "links": [
+      {
+        "header": "Documentation",
+        "items": [
+          {
+            "label": "How it works",
+            "href": "/how-it-works/four-layers"
+          },
+          {
+            "label": "Core concepts",
+            "href": "/concepts/tranches"
+          },
+          {
+            "label": "Architecture",
+            "href": "/architecture/overview"
+          }
+        ]
+      },
+      {
+        "header": "Audience",
+        "items": [
+          {
+            "label": "For originators",
+            "href": "/originators/overview"
+          },
+          {
+            "label": "For investors",
+            "href": "/investors/the-notes"
+          }
+        ]
+      },
+      {
+        "header": "Status",
+        "items": [
+          {
+            "label": "Where things stand",
+            "href": "/status"
+          },
+          {
+            "label": "Roadmap",
+            "href": "/roadmap"
+          },
+          {
+            "label": "Security",
+            "href": "/resources/security"
+          },
+          {
+            "label": "Disclosures",
+            "href": "/disclosures"
+          }
+        ]
+      }
+    ]
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "claude",
+      "chatgpt"
+    ]
+  }
+}

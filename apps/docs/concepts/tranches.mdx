@@ -1,0 +1,54 @@
+---
+title: "Tranches"
+description: "A tranche is a position in a queue. Plain-language explanation of what tranching does."
+---
+
+## If you have not met the word before
+
+A pool of loans produces two things: money coming in, and losses. A **tranche** is
+a position in the queue for both.
+
+Investors in the same pool are not all treated alike. They are sorted into layers,
+and the layer decides two things:
+
+- **When you get paid.** Repayments enter at the top of the stack and work down.
+- **When you lose.** Losses start at the bottom of the stack and work up.
+
+Sitting near the top means you are paid first and lose last, so you accept a lower
+rate. Sitting near the bottom means you are paid last and lose early, so you demand
+a higher one.
+
+That is the whole idea. Everything else is detail about where the boundaries sit.
+
+## Why anyone bothers
+
+One pool of receivables suits almost nobody on its own. A pension fund cannot hold
+an unrated loan book; a credit specialist does not want a 7% return. Tranching cuts
+one asset into several risk positions, so each can be sold to the buyer who
+actually wants it.
+
+For the originator, that means the pool can be funded at a blended cost lower than
+any single investor would charge for the whole thing.
+
+## The three PRISM notes
+
+| Note | Position | Target rate |
+|---|---|---|
+| pPRIME · senior | Paid first, loses last | 7.5–9% |
+| pCORE · mezzanine | Middle | ~11% |
+| pALPHA · junior | Paid last, loses early | ~16% |
+
+Beneath all three sits the originator's own money, which is destroyed before any
+investor loses anything. See [first loss](/concepts/first-loss).
+
+## What tranching is not
+
+<Warning>
+  Tranching does not reduce losses. It changes who absorbs them and in what order.
+  A pool that loses 30% still loses 30%.
+</Warning>
+
+It also does nothing about the originator diverting cash or misreporting the loan
+book. A waterfall decides who loses first; it cannot stop money leaving through the
+wrong door. That is
+[the problem that actually matters](/concepts/the-originator-problem).
