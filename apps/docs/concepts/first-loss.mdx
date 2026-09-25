@@ -1,0 +1,54 @@
+---
+title: "First loss"
+description: "The originator's own money, deposited before the pool opens, destroyed before any investor loses anything."
+---
+
+## What it is
+
+Before a pool opens, the originator deposits at least 15% of the pool in its own
+money. That deposit sits at the bottom of the stack and is destroyed first.
+
+If the pool loses \$400,000 on \$10M, the originator absorbs all of it and investors
+lose nothing. The originator would have to lose its entire \$1.5M before the junior
+note is touched at all.
+
+## Why it is a check in code, not a promise
+
+The contracts refuse to open the pool without it. The first-loss floor and the
+ratio caps are checked on every deposit, so the pool cannot reach a state where
+investor money is at risk ahead of the originator's.
+
+That is the difference between a structural protection and a covenant. A covenant
+is something you sue over afterwards.
+
+## Why at least 15%
+
+Two reasons, and only one of them is about loss absorption.
+
+**It absorbs normal credit loss.** At an assumed 4% loss rate, 15% is a wide
+margin — though that 4% has never been measured, and
+[Disclosures](/disclosures) says so plainly.
+
+**It makes the notes sellable.** This is the bigger reason. An originator with
+nothing at stake has no reason to underwrite carefully or collect diligently.
+Skin in the game is what makes an investor willing to sit above it.
+
+<Note>
+  Pool one requires 25%, not 15%. The first pool has no performance history to
+  price against, so it carries a wider floor.
+</Note>
+
+## What it makes pALPHA
+
+Because the originator's 15% absorbs the first losses, the junior note is **second
+loss, not first loss** — and is priced accordingly, at roughly 16% rather than the
+much higher rate true first-loss capital would demand. See
+[why the rates are what they are](/investors/pricing).
+
+## The honest caveat
+
+<Warning>
+  No on-chain junior tranche has yet absorbed a real credit loss as designed.
+  Across every protocol we reviewed, first-loss capital has either been bypassed,
+  covered off-chain, or never tested. Ours is untested too.
+</Warning>

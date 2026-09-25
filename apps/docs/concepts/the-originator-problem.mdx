@@ -1,0 +1,55 @@
+---
+title: "The originator problem"
+description: "The end borrowers are not the main danger. The originator is."
+---
+
+The end borrowers are not the main danger. The originator is.
+
+The originator finds the loans, collects the money, and reports the numbers. You
+are not in the room. Everything you know about the pool, you know because they
+told you.
+
+## Why a waterfall does not help here
+
+A tranche structure handles losses that arrive through the front door — borrowers
+who do not pay. It allocates them bottom-up in a defined order.
+
+<Warning>
+  No tranche structure prevents money leaving through the wrong door. Tranches
+  decide who loses first. That is a different problem from cash never arriving, or
+  arriving and then being moved somewhere else.
+</Warning>
+
+Two failures look nothing alike in the data but land in the same place:
+
+- **Credit loss.** Borrowers default. The loan tape shows it. First loss absorbs it.
+- **Originator failure or diversion.** Collections are received and then moved, or
+  the loan tape does not describe reality. The waterfall never sees it.
+
+The second is the risk PRISM is actually designed around. See
+[the Goldfinch case study](/risk/goldfinch) for what it looks like in practice.
+
+## What is done about it
+
+Four structural controls, described in full on [the four controls](/risk/controls):
+
+<Columns cols={2}>
+  <Card title="Controlled collections" icon="lock" href="/concepts/controlled-collections">
+    Repayments land where the originator cannot reach them.
+  </Card>
+  <Card title="True sale" icon="file-text" href="/risk/controls">
+    Each pool is a separate legal entity that buys the receivables outright.
+  </Card>
+  <Card title="The collection tripwire" icon="siren" href="/concepts/collection-tripwire">
+    Collections below 90% of expectation halt the pool automatically.
+  </Card>
+  <Card title="First loss deposited first" icon="wallet" href="/concepts/first-loss">
+    At least 15%, checked by the contracts before the pool can open.
+  </Card>
+</Columns>
+
+## The part that cannot be fixed with code
+
+Early pools will have one originator. If that company fails or misreports,
+protections help but do not make investors whole. Concentration is a real,
+unremoved risk, and it is listed as such in [Disclosures](/disclosures).

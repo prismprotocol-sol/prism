@@ -1,0 +1,43 @@
+---
+title: "Two chains, one system"
+description: "Arc carries the pool, Solana carries distribution, and CCTP connects them."
+---
+
+<Columns cols={3}>
+  <Card title="Arc" icon="layers" href="/architecture/why-arc">
+    Circle's Layer 1. Carries the pool: receivables, tranche tokens, the loss
+    waterfall and the first-loss floor.
+  </Card>
+  <Card title="Solana" icon="waves" href="/architecture/solana-distribution">
+    Carries distribution. Junior and mezzanine risk capital is raised here.
+  </Card>
+  <Card title="CCTP and Gateway" icon="arrow-left-right" href="/architecture/circle-products">
+    Investors hold one USDC balance and fund a pool on either chain without bridging
+    manually.
+  </Card>
+</Columns>
+
+## Why split it at all
+
+The two sides of the capital stack live in different places.
+
+Institutions buy senior notes and need fiat rails, regulated custody and a chain
+their own compliance teams already accept. Risk-seeking capital that will hold a
+junior tranche is abundant on Solana and scarce among institutions.
+
+Asking either side to move to the other's chain loses one of them. So the pool sits
+where the fiat and the institutions are, distribution sits where the risk capital
+is, and USDC moves between them.
+
+## Which comes first
+
+Arc first, because the pool needs fiat at both ends and PRISM's senior buyers are
+the institutions already validating that chain. Solana second — it is
+[M5 on the roadmap](/roadmap#m5-·-solana-distribution), the last
+milestone.
+
+<Note>
+  Today the tranche mechanics run on Solana devnet only. Nothing is deployed to Arc
+  mainnet yet — that is [M1](/roadmap#m1-·-pool-contracts-live-on-arc).
+  See [Where things stand](/status).
+</Note>

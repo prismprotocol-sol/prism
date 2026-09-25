@@ -1,0 +1,87 @@
+---
+title: "Roadmap"
+description: "Milestones gated on observable outcomes, not dates."
+---
+
+Milestones are gated on observable outcomes, not dates. Dates below assume a
+start of 1 October 2026.
+
+| Milestone | Target | The observable outcome |
+|---|---|---|
+| M1 · Pool contracts live on Arc | Nov 2026 | One full cycle on mainnet, repository public |
+| M2 · Shadow pool on a real loan book | Jan 2027 | 60 days of real collection data, a measured loss rate |
+| M3 · Audited, incorporated, first deal signed | Mar 2027 | Published audit, named originator |
+| M4 · Pool one funded and matured | Jun 2027 | Published outcome report |
+| M5 · Solana distribution | Sep 2027 | A junior tranche funded from Solana |
+
+<Note>
+  Nothing on this roadmap has been completed. See
+  [Where things stand](/status).
+</Note>
+
+## M1 · Pool contracts live on Arc
+
+**Nov 2026.** Tranches, allowlist, waterfall, first-loss floor and repayment
+routing, deployed to Arc mainnet.
+
+**Done when:** one full cycle executes on mainnet — deposit, mint, repay,
+distribute loss — with the repository and deployed addresses public.
+
+This is the first point at which the claims in
+[contract mechanics in version one](/architecture/contracts-v1) become checkable by
+someone outside PRISM.
+
+## M2 · Shadow pool on a real loan book
+
+**Jan 2027.** An originator's actual receivables run through the contracts with no
+capital at risk. Weekly loan tape ingested, the collection tripwire fired under
+test.
+
+**Done when:** 60 consecutive days of real collection data are published,
+producing a measured loss rate that replaces the current assumption.
+
+**Stops if:** no originator will share a loan tape. That would mean there is no
+product.
+
+<Warning>
+  This is the milestone that matters most for the numbers on this site. PRISM's 4%
+  expected loss rate is a placeholder until this produces a measured one. See
+  [Disclosures](/disclosures).
+</Warning>
+
+## M3 · Audited, incorporated, first deal signed
+
+**Mar 2027.** A scoped security audit by a named firm, an issuing entity with a
+securities opinion, one conditional originator term sheet, and one credit investor
+committed to the junior tranche.
+
+**Done when:** the audit report is published with commit hashes, and the
+originator and structure are named publicly.
+
+The credit investor committing to pALPHA is the second thing that can replace the
+4% assumption — their price is the market's judgement on the originator. See
+[why the rates are what they are](/investors/pricing).
+
+## M4 · Pool one funded and matured
+
+**Jun 2027.** One pool funded by professional investors, drawn down in fiat,
+repaid, and run to maturity on a 30–90 day tenor.
+
+**Done when:** the outcome report is published, showing the realised loss rate and
+every tranche's return.
+
+**Success is not size.** A small pool that matures and pays out is the deliverable.
+
+Pool one carries a 25% first-loss floor rather than the standard 15%, because there
+is no performance history to price against. See
+[first loss](/concepts/first-loss).
+
+## M5 · Solana distribution
+
+**Sep 2027.** Junior and mezzanine tranches on Solana, with investors holding one
+USDC balance across both chains.
+
+**Done when:** a junior tranche is funded from Solana and settles to the Arc pool
+in a single transfer.
+
+See [why Solana carries distribution](/architecture/solana-distribution).

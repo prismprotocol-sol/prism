@@ -1,0 +1,38 @@
+---
+title: "Why Arc carries the pool"
+description: "Circle's Layer 1: USDC as native gas, sub-second settlement, and native fiat rails."
+---
+
+**Arc carries the pool.** Circle's Layer 1 went live on 16 September 2026. It is
+EVM-compatible, uses USDC as its native gas token, and settles in under a second.
+Receivables, tranche tokens, the loss waterfall and the first-loss floor all live
+here.
+
+| Property | Why it matters here |
+|---|---|
+| USDC is the native gas token | The pool's unit of account and its gas are the same asset. |
+| EVM-compatible | Standard tooling for the contracts. |
+| Sub-second settlement | Distribution down the waterfall is not a batch job. |
+| Circle Mint is native | Fiat conversion at drawdown and repayment. |
+
+## The reason that actually decided it
+
+Arc was chosen because a credit pool needs fiat at both ends. Circle Mint and the
+institutional rails are native to it, and its validator set is made up of the
+institutions most likely to buy senior notes.
+
+That second point is the one worth sitting with. The senior layer is the largest and
+the cheapest, so the cost of the whole pool depends most on who will hold it. Being
+on a chain those buyers already validate is a distribution advantage, not a
+technical one.
+
+## What lives on Arc
+
+- Receivable records and repayment routing
+- The three tranche tokens
+- The loss waterfall
+- The first-loss floor and ratio caps
+- Per-pool state and isolation
+
+The full list, and what is deliberately excluded, is in
+[contract mechanics in version one](/architecture/contracts-v1).

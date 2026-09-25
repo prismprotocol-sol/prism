@@ -1,0 +1,48 @@
+---
+title: "The collection tripwire"
+description: "Collections below 90% of expectation halt the pool automatically — no vote, no discretion."
+---
+
+Every week the originator delivers a loan tape: every loan, its dates, amounts and
+payment history. The pool compares what was collected against what was expected.
+
+If collections fall below **90% of expectation**, the pool halts new purchases by
+itself and routes all incoming cash to repaying investors.
+
+<Note>
+  No vote, no delay, no discretion. The stop is automatic.
+</Note>
+
+## Why automatic matters
+
+A discretionary stop is a stop that gets argued about. By the time a committee has
+agreed that collections look bad, more capital has been deployed into a book that
+was already deteriorating.
+
+Removing the discretion removes the argument. It also removes PRISM's ability to
+be persuaded to wait, which is the point.
+
+## What happens after it fires
+
+The pool stops buying new receivables and switches to repayment mode. Incoming
+cash goes to investors in waterfall order — senior first, then down the stack.
+Nothing new is funded until the situation is resolved.
+
+## What it catches, and what it does not
+
+**Catches:** a loan book deteriorating faster than expected, and collections that
+are quietly short.
+
+**Does not catch:** a loan tape that does not describe reality. The tripwire
+compares reported collections against expectations. If the report itself is wrong,
+the tripwire is measuring the wrong thing.
+
+That gap is why independent verification of the invoices by an outside firm is on
+the list of things that [arrive later](/risk/limits) — it costs money per pool, so
+it comes once there is revenue to pay for it.
+
+## Where it has been tested
+
+Firing the tripwire under test is an explicit deliverable of the shadow pool, and
+has not happened yet. See
+[M2 on the roadmap](/roadmap#m2-·-shadow-pool-on-a-real-loan-book).

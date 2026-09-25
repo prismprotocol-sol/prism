@@ -1,0 +1,38 @@
+---
+title: "Circle products in use"
+description: "USDC, Circle Mint, Gateway and CCTP — and what is on the roadmap but not yet used."
+---
+
+| Product | What it does here |
+|---|---|
+| USDC | Every pool is denominated in it. Purchases, notes, repayments, losses. |
+| Circle Mint | Converts pool proceeds to fiat at drawdown and back at repayment. Supplies the institutional account behind controlled collections. |
+| Gateway | Lets investors fund a pool from a unified USDC balance across chains. |
+| CCTP | The settlement rail beneath Gateway. |
+
+## Where each one sits in a pool's life
+
+- **Drawdown.** Circle Mint converts USDC to fiat so the originator can lend it.
+- **Collections.** Circle Mint supplies the institutional account behind
+  [controlled collections](/concepts/controlled-collections) — the account the
+  originator can see but cannot empty.
+- **Funding.** Gateway lets an investor fund a pool on either chain from one USDC
+  balance, with CCTP as the rail beneath it.
+
+<Warning>
+  Circle Mint is also where the structure crosses from code into law. Once cash is in
+  a bank account, protection depends on a trustee and a legal system, not a
+  contract. See [the honest limit](/risk/limits).
+</Warning>
+
+## On the roadmap, not yet in use
+
+| Product | Intended use |
+|---|---|
+| StableFX | Local-currency pools, removing the dollar-denomination requirement |
+| USYC | Capital held between pools |
+
+StableFX is what would eventually relax
+[the dollar-denominated receivables requirement](/originators/requirements).
+Today, local-currency invoices mean somebody carries the currency risk, and hedging
+it costs 4–5% a year — which breaks the economics for everyone.

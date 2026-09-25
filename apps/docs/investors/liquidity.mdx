@@ -1,0 +1,33 @@
+---
+title: "Liquidity"
+description: "What you cannot do. There is no exit before maturity in version one."
+---
+
+## What you cannot do
+
+Exit early. Pools run 30 to 90 days and there is no redemption before maturity in
+version one. No AMM, no secondary market, no reserve. Those come later, if at all.
+
+<Warning>
+  "If at all" is deliberate. An AMM, a distress auction, an instant-withdraw
+  reserve and batched redemption are all excluded from version one and are not
+  promised for any later version. See
+  [contract mechanics in version one](/architecture/contracts-v1).
+</Warning>
+
+## Why it is built this way
+
+Short tenor is the substitute for liquidity. Rather than build an exit mechanism,
+PRISM keeps the commitment short enough that an exit matters less — and keeps the
+capital working the whole time it is committed.
+
+An open-ended pool that offers redemption has to hold cash against it. That cash
+earns nothing while still diluting returns. See
+[why the tenor is short](/how-it-works/why-short-tenor) and
+[utilisation](/economics/utilisation).
+
+## What this means for you
+
+A 60-day lock is the price of capital that is never lazy. If you cannot hold an
+illiquid note to maturity, these notes are not for you — see
+[who this is for](/investors/eligibility).

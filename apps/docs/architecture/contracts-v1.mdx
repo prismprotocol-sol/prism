@@ -1,0 +1,48 @@
+---
+title: "Contract mechanics in version one"
+description: "Six things, deliberately no more — and a list of what is excluded until there is revenue."
+---
+
+Six things, deliberately no more:
+
+- Per-pool state and isolation, so one pool's failure cannot touch another
+- Three tranche tokens
+- A transfer allowlist on every token, controlling who may hold them
+- The loss waterfall
+- The first-loss floor and ratio caps, checked on every deposit
+- Receivable records and repayment routing
+
+## What each one is actually for
+
+| Mechanism | What it enforces |
+|---|---|
+| Per-pool isolation | One pool's failure cannot reach another's receivables. |
+| Three tranche tokens | The senior, mezzanine and junior positions. |
+| Transfer allowlist | Who may hold a note — [eligibility](/investors/eligibility), enforced at the token level rather than on a website. |
+| Loss waterfall | The order in which capital is destroyed. |
+| First-loss floor and ratio caps | The pool cannot open, or drift, without the originator's deposit in place. |
+| Receivable records and repayment routing | Where a repayment goes, in code rather than by instruction. |
+
+Note what the third and fifth have in common with
+[the four controls](/risk/controls): they are checks, not covenants. The pool
+cannot enter an invalid state rather than being punished afterwards for having done
+so.
+
+## Deliberately excluded
+
+Until there is revenue: the AMM, the distress auction, a senior index token, the
+instant-withdraw reserve, and batched redemption.
+
+<Warning>
+  Short tenor is the substitute for liquidity in version one. These are not promised
+  for any later version — they arrive if and when there is revenue to pay for them.
+  See [liquidity](/investors/liquidity).
+</Warning>
+
+## Where the code is
+
+Nothing is deployed to mainnet. Publishing the repository and the deployed addresses
+is part of the definition of done for
+[M1](/roadmap#m1-·-pool-contracts-live-on-arc), and a scoped audit is
+[M3](/roadmap#m3-·-audited-incorporated-first-deal-signed). See
+[security](/resources/security).

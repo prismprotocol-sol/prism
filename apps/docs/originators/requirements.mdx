@@ -1,0 +1,55 @@
+---
+title: "What we need from you"
+description: "Six requirements before a pool can open. One of them is non-negotiable."
+---
+
+## At least 15% of the pool, in your own money, deposited first
+
+This is not negotiable. It is what makes the notes sellable to anyone else.
+
+The contracts check it before the pool can open. See
+[first loss](/concepts/first-loss). Pool one requires 25%.
+
+## Dollar-denominated receivables
+
+At least for now. If your invoices are in local currency and our investors hold
+USDC, somebody carries the currency risk, and hedging it costs 4–5% a year, which
+breaks the economics for everyone.
+
+<Note>
+  Local-currency pools depend on Circle's StableFX, which is on the roadmap and not
+  yet in use. See [Circle products](/architecture/circle-products).
+</Note>
+
+## A loan book earning at least 15% gross
+
+Below that there is not enough spread to pay investors, cover losses and leave you
+a profit. The arithmetic behind that floor is in
+[why the asset has to earn 15% or more](/economics/minimum-asset-yield).
+
+## Your existing senior lender's consent
+
+Most credit facilities forbid pledging the same receivables elsewhere. We work
+inside their structure, not around it.
+
+## Weekly collection data
+
+A loan tape — every loan, its dates, amounts and payment history.
+
+This is what [the collection tripwire](/concepts/collection-tripwire) measures
+against. Weekly, not monthly, because a monthly tape means up to four weeks of
+deterioration before anyone notices.
+
+## Collections into a controlled account
+
+An account you can see but cannot empty. For stablecoin repayments this is
+enforced by the contracts; for fiat it is a controlled account with an independent
+trustee. See [controlled collections](/concepts/controlled-collections).
+
+---
+
+<Warning>
+  A pool cannot open until all six are in place. The first and the fourth are the
+  ones that most often stop a deal: an originator unwilling to fund 15%, or a
+  senior lender unwilling to consent.
+</Warning>

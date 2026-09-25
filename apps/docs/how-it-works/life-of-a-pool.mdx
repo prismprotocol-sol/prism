@@ -1,0 +1,55 @@
+---
+title: "The life of a pool"
+description: "Seven stages, from onboarding to published outcome."
+---
+
+<Steps>
+  <Step title="Onboarding">
+    The originator is checked, the servicing agreement signed, and their existing
+    senior lender consents.
+
+    Consent is not a formality. Most credit facilities forbid pledging the same
+    receivables elsewhere, so a pool cannot open without it. See
+    [what we need from you](/originators/requirements).
+  </Step>
+  <Step title="First loss deposited">
+    The originator's 15% goes in before anything else. The contracts refuse to
+    open the pool without it.
+
+    This is a check in code, not a covenant in a document. See
+    [first loss](/concepts/first-loss).
+  </Step>
+  <Step title="Investors fund the tranches">
+    Each buyer picks the layer matching the risk they want — pPRIME, pCORE or
+    pALPHA. A transfer allowlist on every token controls who may hold it.
+  </Step>
+  <Step title="Drawdown">
+    USDC converts to fiat through Circle Mint and reaches the originator, who
+    lends it.
+  </Step>
+  <Step title="Collections">
+    Borrowers repay. Money lands in an account the originator cannot empty.
+
+    This is the single most important protection in the structure. See
+    [controlled collections](/concepts/controlled-collections).
+  </Step>
+  <Step title="Distribution">
+    Repayments pay the senior layer first, then down the stack.
+  </Step>
+  <Step title="Maturity">
+    After 30 to 90 days the pool closes and the outcome is published.
+  </Step>
+</Steps>
+
+## The automatic stop
+
+At any point between drawdown and maturity, the pool can halt itself. If weekly
+collections fall below 90% of what was expected, it stops buying new receivables
+and routes all incoming cash to repaying investors — with no vote and no
+discretion. See [the collection tripwire](/concepts/collection-tripwire).
+
+## What "published" means
+
+The outcome report states the realised loss rate and every tranche's return. For
+pool one this is the whole deliverable: see
+[M4 on the roadmap](/roadmap#m4-·-pool-one-funded-and-matured).

@@ -1,0 +1,37 @@
+---
+title: "Why the tenor is short"
+description: "30 to 90 days, because capital that waits for a borrower earns nothing."
+---
+
+Receivables of 30 to 90 days mean capital is working almost the whole time it is
+committed — roughly 85% deployment. An open-ended lending pool holds money
+waiting for a borrower, and that idle money earns nothing while still diluting
+investor returns.
+
+PRISM raises against a known book. The money has a destination before it is
+raised, so it cannot sit idle.
+
+## The trade-off, stated plainly
+
+<Warning>
+  Investors cannot exit early. A 60-day lock is the price of capital that is never
+  lazy. There is no redemption before maturity in version one — no AMM, no
+  secondary market, no reserve.
+</Warning>
+
+Short tenor is the substitute for liquidity in version one. Rather than build an
+exit mechanism, PRISM keeps the commitment short enough that an exit matters less.
+
+## Why this is not just a preference
+
+A pool's return depends on how much of the year its capital is actually working,
+not on the headline rate. If half the money is idle, the pool earns half the rate.
+That arithmetic is what makes a modest headline rate competitive here, and it is
+covered in [utilisation](/economics/utilisation).
+
+## What comes later
+
+An AMM, a distress auction, an instant-withdraw reserve and batched redemption are
+all deliberately excluded from version one. They arrive once there is revenue to
+pay for them, not before. See
+[contract mechanics in version one](/architecture/contracts-v1).

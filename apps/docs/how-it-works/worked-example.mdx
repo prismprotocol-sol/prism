@@ -1,0 +1,48 @@
+---
+title: "A worked example"
+description: "A $10M pool, how it is funded, and who absorbs the loss at each level."
+---
+
+## How the pool is funded
+
+A pool holds \$10M of receivables.
+
+The originator deposits \$1.5M of its own money — 15%. A bank advances \$7.5M. The
+remaining \$1M is what PRISM raises from investors.
+
+| Source | Amount | Share of pool |
+|---|---|---|
+| Bank senior advance | \$7.5M | 75% |
+| Raised by PRISM from investors | \$1M | 10% |
+| Originator's own money, deposited first | \$1.5M | 15% |
+| **Pool of receivables** | **\$10M** | **100%** |
+
+## Who absorbs a loss
+
+If the pool loses \$400,000, the originator absorbs all of it. Investors lose
+nothing. The originator would have to lose its entire \$1.5M before pALPHA is
+touched at all.
+
+The table below reads off the [attachment points](/concepts/attachment-points).
+It shows the order in which capital is destroyed, not a forecast of what will
+happen.
+
+| Pool loss | Who absorbs it |
+|---|---|
+| \$400,000 · 4% | The originator, entirely. No investor is touched. |
+| \$1.5M · 15% | The originator's deposit is exactly exhausted. Still no investor loss. |
+| Above 15% | pALPHA · junior begins to lose. |
+| Above 21–25% | pCORE · mezzanine begins to lose. |
+| Higher still | The senior layer begins to lose. |
+
+<Note>
+  The 4% figure used above is PRISM's expected loss rate. It has never been
+  measured against real data and is a placeholder. See [Disclosures](/disclosures).
+</Note>
+
+## What this example does not show
+
+It does not show the originator diverting collections, misreporting the loan tape,
+or failing outright. Those are not absorbed by the waterfall at all — they are
+addressed by the [four controls](/risk/controls), and they are the reason the
+[originator is the concentrated risk](/concepts/the-originator-problem).

@@ -1,0 +1,41 @@
+---
+title: "What can go wrong"
+description: "Credit loss, originator failure, a pool that loses more than expected, and slow legal recovery."
+---
+
+## The borrowers do not pay
+
+Normal credit loss. The originator's 15% covers a great deal of this — at the
+assumed 4% loss rate, a wide margin. See [first loss](/concepts/first-loss).
+
+## The originator fails or diverts cash
+
+This is the real risk, and it is what destroyed Goldfinch. Our protections against
+it are on [the Risk pages](/risk/overview), and the case study itself is
+[here](/risk/goldfinch).
+
+<Warning>
+  Early pools will have one originator. If that company fails or misreports,
+  protections help but do not make investors whole.
+</Warning>
+
+## A pool loses more than expected
+
+Our loss estimate has never been measured against real data. It is a placeholder
+of 4%, and it will be replaced by data from the shadow pool or by the price a real
+credit investor demands for pALPHA. See [Disclosures](/disclosures).
+
+## Legal recovery is slow
+
+Enforcing claims across borders takes years, and recovery is rarely complete.
+Recovery depends on courts in the originator's home country.
+
+## Two more you should weigh
+
+**No on-chain junior tranche has yet absorbed a real credit loss as designed.**
+Across every protocol we reviewed, first-loss capital has either been bypassed,
+covered off-chain, or never tested. Ours is untested too.
+
+**Smart contracts can have bugs.** An audit reduces this risk. It does not remove
+it — and PRISM has not been audited yet. See
+[security](/resources/security).

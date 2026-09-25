@@ -1,0 +1,44 @@
+---
+title: "Controlled collections"
+description: "Repayments land in an account the originator can see but cannot empty. The single most important protection."
+---
+
+When a borrower repays, the money lands where the originator cannot reach it.
+
+This is the single most important protection in the structure. Everything else —
+the tranches, the first-loss floor, the attachment points — assumes cash actually
+arrives in the pool. This control is what makes that assumption reasonable.
+
+## How it is enforced
+
+| Repayment arrives as | Enforced by |
+|---|---|
+| Stablecoin | The contracts. Routing is code, not instruction. |
+| Fiat | A controlled account with an independent trustee. |
+
+The originator can see the account. It cannot empty it.
+
+## Why the split matters
+
+On-chain, this is a strong guarantee: the destination of a repayment is fixed by
+the contract and the originator has no key that changes it.
+
+Off-chain, it is a legal arrangement. It depends on a trustee honouring a contract
+and, if they do not, on a court.
+
+<Warning>
+  Code protects money that is on-chain. The moment cash touches an ordinary bank
+  account, protection depends on a trustee, a contract and a legal system. That
+  boundary is exactly where Goldfinch lost control, and no smart contract closes
+  it.
+</Warning>
+
+Since PRISM pools convert to fiat at drawdown and back at repayment through Circle
+Mint, most pools will have cash on both sides of that boundary. Saying otherwise
+would be dishonest. See [the honest limit](/risk/limits).
+
+## What it is paired with
+
+Controlled collections stop cash being diverted. They do not tell you whether the
+collections *should* have been larger. That is the job of the weekly loan tape and
+[the collection tripwire](/concepts/collection-tripwire).

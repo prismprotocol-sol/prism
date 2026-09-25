@@ -1,0 +1,47 @@
+---
+title: "Attachment points"
+description: "The precise loss level at which each note starts to lose money."
+---
+
+An **attachment point** is the pool loss level at which a given layer starts to
+lose money. Below it, that layer is untouched. Above it, it is being eaten.
+
+| Note | Starts losing when |
+|---|---|
+| pPRIME · senior | Pool losses exceed 40% |
+| pCORE · mezzanine | Pool losses reach 21–25% |
+| pALPHA · junior | Pool losses reach 15–21% |
+| Originator first loss | Immediately, from the first dollar |
+
+## How to read this
+
+The originator's deposit absorbs everything up to 15% of the pool. Only once it is
+exhausted does pALPHA begin to lose. Once pALPHA is exhausted, pCORE begins. The
+senior layer is last.
+
+This is why pALPHA is described as **second loss**: it does not take the first
+dollar of loss, and is not priced as though it does.
+
+## Why the ranges are ranges
+
+The boundaries move with how a particular pool is sized. An originator depositing
+25% rather than 15% pushes every attachment point above it upward by ten
+percentage points, and every note above becomes safer without its rate changing.
+Pool one is a 25% pool.
+
+## What an attachment point does not tell you
+
+It tells you the *order* in which capital is destroyed. It says nothing about how
+likely any of those loss levels is.
+
+<Warning>
+  PRISM's expected loss rate of 4% has never been measured against real data. It is
+  a placeholder that will be replaced by data from the shadow pool, or by the price
+  a professional credit investor demands for holding pALPHA — whichever comes
+  first. See [Disclosures](/disclosures).
+</Warning>
+
+Attachment points also assume losses arrive as ordinary credit losses that the
+waterfall can see. They do not cover an originator diverting collections, which
+bypasses the waterfall entirely. See
+[the originator problem](/concepts/the-originator-problem).

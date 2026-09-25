@@ -1,0 +1,54 @@
+---
+title: "Security"
+description: "PRISM has not been audited. What that means, and what is planned."
+---
+
+## Current state
+
+<Warning>
+  PRISM has not been audited. No security audit has been performed, scoped or
+  commissioned. Nothing is deployed to mainnet.
+</Warning>
+
+The tranche mechanics run on Solana devnet only. There is no production deployment
+to attack and no investor capital at risk, because no pool has been funded.
+
+## What is planned
+
+A scoped security audit by a named firm is part of
+[M3](/roadmap#m3-·-audited-incorporated-first-deal-signed), alongside an
+issuing entity with a securities opinion.
+
+**Done when:** the audit report is published with commit hashes, and the originator
+and structure are named publicly.
+
+Publishing the repository and the deployed addresses comes earlier, at
+[M1](/roadmap#m1-·-pool-contracts-live-on-arc).
+
+## What an audit will and will not do
+
+<Note>
+  Smart contracts can have bugs. An audit reduces this risk. It does not remove it.
+</Note>
+
+An audit checks the code against its intent. It does not check whether the intent is
+right, and it says nothing about the risks that live outside the contracts:
+
+| Risk | Addressed by an audit? |
+|---|---|
+| Contract bugs | Reduced, not removed |
+| An originator diverting fiat collections | No — a trustee and a legal system |
+| A loan tape that does not describe reality | No — independent verification, which [arrives later](/risk/limits) |
+| Concentration in one originator | No |
+| Legal enforceability across borders | No |
+
+## Where security is structural rather than cryptographic
+
+Several protections in PRISM are checks in code rather than covenants in a document
+— the first-loss floor, the ratio caps, the transfer allowlist, repayment routing.
+Those cannot be argued with, which is the point. See
+[contract mechanics in version one](/architecture/contracts-v1).
+
+The controls that matter most, though, straddle the code boundary. Controlled
+collections are enforced by contract on-chain and by a trustee off-chain, and only
+one of those halves is cryptographic. See [the honest limit](/risk/limits).

@@ -1,0 +1,222 @@
+---
+title: "The four layers"
+description: "A pool is funded in layers. Losses are absorbed from the bottom up, repayments enter at the top."
+---
+
+A pool is funded in layers. Losses are absorbed from the bottom up, and
+repayments enter at the top.
+
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "auto minmax(0, 1fr) auto",
+    gap: "0.9rem",
+    margin: "2rem 0",
+  }}
+>
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: "0.5rem",
+      padding: "0.25rem 0",
+      fontSize: "0.68rem",
+      letterSpacing: "0.14em",
+      textTransform: "uppercase",
+      color: "color-mix(in srgb, currentColor 60%, transparent)",
+    }}
+  >
+    <span style={{ writingMode: "vertical-rl", transform: "rotate(0deg)", whiteSpace: "nowrap" }}>
+      Repayments enter at the top
+    </span>
+    <span aria-hidden="true" style={{ fontSize: "0.9rem" }}>↓</span>
+  </div>
+
+  <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        alignItems: "baseline",
+        justifyContent: "space-between",
+        gap: "0.25rem 1rem",
+        padding: "0.85rem 1rem",
+        border: "1px solid color-mix(in srgb, currentColor 22%, transparent)",
+        borderRadius: "2px",
+        background: "color-mix(in srgb, currentColor 3%, transparent)",
+      }}
+    >
+      <span style={{ display: "flex", flexDirection: "column", gap: "0.15rem", minWidth: "10rem" }}>
+        <span style={{ fontWeight: 600, letterSpacing: "-0.01em" }}>Senior</span>
+        <span style={{ fontSize: "0.82rem", color: "color-mix(in srgb, currentColor 65%, transparent)" }}>A bank or credit fund, or pPRIME investors</span>
+      </span>
+      <span
+        style={{
+          flexShrink: 0,
+          fontSize: "0.66rem",
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          whiteSpace: "nowrap",
+          color: "color-mix(in srgb, currentColor 60%, transparent)",
+        }}
+      >
+        Absorbs losses Fourth
+      </span>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        alignItems: "baseline",
+        justifyContent: "space-between",
+        gap: "0.25rem 1rem",
+        padding: "0.85rem 1rem",
+        border: "1px solid color-mix(in srgb, currentColor 22%, transparent)",
+        borderRadius: "2px",
+        background: "color-mix(in srgb, currentColor 3%, transparent)",
+      }}
+    >
+      <span style={{ display: "flex", flexDirection: "column", gap: "0.15rem", minWidth: "10rem" }}>
+        <span style={{ fontWeight: 600, letterSpacing: "-0.01em" }}>pCORE · mezzanine</span>
+        <span style={{ fontSize: "0.82rem", color: "color-mix(in srgb, currentColor 65%, transparent)" }}>Professional investors</span>
+      </span>
+      <span
+        style={{
+          flexShrink: 0,
+          fontSize: "0.66rem",
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          whiteSpace: "nowrap",
+          color: "color-mix(in srgb, currentColor 60%, transparent)",
+        }}
+      >
+        Absorbs losses Third
+      </span>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        alignItems: "baseline",
+        justifyContent: "space-between",
+        gap: "0.25rem 1rem",
+        padding: "0.85rem 1rem",
+        border: "1px solid color-mix(in srgb, currentColor 22%, transparent)",
+        borderRadius: "2px",
+        background: "color-mix(in srgb, currentColor 3%, transparent)",
+      }}
+    >
+      <span style={{ display: "flex", flexDirection: "column", gap: "0.15rem", minWidth: "10rem" }}>
+        <span style={{ fontWeight: 600, letterSpacing: "-0.01em" }}>pALPHA · junior</span>
+        <span style={{ fontSize: "0.82rem", color: "color-mix(in srgb, currentColor 65%, transparent)" }}>A professional credit investor</span>
+      </span>
+      <span
+        style={{
+          flexShrink: 0,
+          fontSize: "0.66rem",
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          whiteSpace: "nowrap",
+          color: "color-mix(in srgb, currentColor 60%, transparent)",
+        }}
+      >
+        Absorbs losses Second
+      </span>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        alignItems: "baseline",
+        justifyContent: "space-between",
+        gap: "0.25rem 1rem",
+        padding: "0.85rem 1rem",
+        border: "1px solid color-mix(in srgb, currentColor 55%, transparent)",
+        borderRadius: "2px",
+        background: "color-mix(in srgb, currentColor 7%, transparent)",
+      }}
+    >
+      <span style={{ display: "flex", flexDirection: "column", gap: "0.15rem", minWidth: "10rem" }}>
+        <span style={{ fontWeight: 600, letterSpacing: "-0.01em" }}>Originator first loss</span>
+        <span style={{ fontSize: "0.82rem", color: "color-mix(in srgb, currentColor 65%, transparent)" }}>The originator itself, at least 15%</span>
+      </span>
+      <span
+        style={{
+          flexShrink: 0,
+          fontSize: "0.66rem",
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          whiteSpace: "nowrap",
+          color: "color-mix(in srgb, currentColor 90%, transparent)",
+        }}
+      >
+        Absorbs losses First
+      </span>
+    </div>
+  </div>
+
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: "0.5rem",
+      padding: "0.25rem 0",
+      fontSize: "0.68rem",
+      letterSpacing: "0.14em",
+      textTransform: "uppercase",
+      color: "color-mix(in srgb, currentColor 60%, transparent)",
+    }}
+  >
+    <span aria-hidden="true" style={{ fontSize: "0.9rem" }}>↑</span>
+    <span style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", whiteSpace: "nowrap" }}>
+      Losses climb from the bottom
+    </span>
+  </div>
+</div>
+
+| Layer | Who funds it | Absorbs losses |
+|---|---|---|
+| Senior | A bank or credit fund, or pPRIME investors | Fourth |
+| pCORE · mezzanine | Professional investors | Third |
+| pALPHA · junior | A professional credit investor | Second |
+| Originator first loss | The originator itself, at least 15% | First |
+
+The originator's own money is destroyed before any investor loses anything. That
+is enforced by the contracts before the pool opens, not promised in a document.
+
+## Why the senior layer has two possible funders
+
+The senior layer is the largest and the cheapest. Usually it is already filled by
+the originator's existing bank or credit fund, and PRISM funds only the layers
+above it. Where no bank is present, PRISM can raise that layer too, as the pPRIME
+note.
+
+Either way the position in the waterfall is the same. What changes is who holds
+it and what it costs.
+
+## What tranching does and does not do
+
+<Warning>
+  Tranching does not reduce losses. It changes who absorbs them and in what order.
+  A pool that loses 30% still loses 30%.
+</Warning>
+
+That distinction matters more than anything else on this page. A tranche structure
+decides the order in which capital is destroyed. It cannot stop money leaving
+through the wrong door, which is a different problem addressed in
+[Risk and protections](/risk/overview).
+
+## Next
+
+<Columns cols={2}>
+  <Card title="A worked example" icon="calculator" href="/how-it-works/worked-example">
+    A \$10M pool, and who absorbs the loss at each level.
+  </Card>
+  <Card title="Attachment points" icon="ruler" href="/concepts/attachment-points">
+    The precise loss level at which each note starts to lose money.
+  </Card>
+</Columns>
