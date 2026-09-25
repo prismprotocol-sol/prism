@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npx mint export --output export.zip --telemetry false && rm -rf dist && unzip -q export.zip -d dist && rm -f dist/serve.js \"dist/Start Docs.bat\" \"dist/Start Docs.command\"",
+  "outputDirectory": "dist"
+}
