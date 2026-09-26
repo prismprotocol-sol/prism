@@ -45,7 +45,7 @@ export default function Header() {
         </nav>
         <div className="flex min-w-0 items-center animate-enter-header-side">
           <a
-            href="#waitlist"
+            href="#footer"
             className={`${condensedDisplay.className} group inline-flex items-center whitespace-nowrap px-4 py-3 text-2xl tracking-[0.03em] text-white uppercase transition-colors duration-[var(--dur-micro)] ease-out hover:text-muted max-mobile:px-1 max-mobile:py-1 max-mobile:text-xs max-[380px]:text-[8px]`}
           >
             <span

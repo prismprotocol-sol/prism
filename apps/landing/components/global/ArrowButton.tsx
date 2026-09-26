@@ -2,6 +2,8 @@ type Props = {
   children: React.ReactNode;
   href?: string;
   className?: string;
+  target?: string;
+  rel?: string;
 };
 
 const CORNER_BASE = "pointer-events-none absolute h-[9px] w-[9px] border-line-strong";
@@ -13,7 +15,7 @@ const CORNERS = [
 ];
 
 /** Bracket-cornered technical button with an arrow that nudges on hover. */
-export default function ArrowButton({ children, href = "#", className }: Props) {
+export default function ArrowButton({ children, href = "#", className, target, rel }: Props) {
   // The corner brackets are absolutely positioned against this element, so it
   // needs `position` other than static — but a caller placing the whole
   // button (e.g. `absolute` in a corner) must be able to override that,
@@ -27,6 +29,8 @@ export default function ArrowButton({ children, href = "#", className }: Props) 
   return (
     <a
       href={href}
+      target={target}
+      rel={rel}
       className={`group ${hasPosition ? "" : "relative"} inline-flex items-center justify-between gap-6 border border-line-soft bg-surface-3 px-[22px] py-[18px] font-mono text-xs tracking-[0.08em] text-fg uppercase transition-[background-color,border-color] duration-[var(--dur-micro)] ease-out hover:border-line-strong hover:bg-[#1b1b1b] ${className ?? ""}`}
     >
       {CORNERS.map((cornerClass) => (

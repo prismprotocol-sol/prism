@@ -1,2 +1,20 @@
 @import "tailwindcss";
 @import "@prism/ui/styles/tokens.css";
+
+/* ------------------------- Design-system overrides (matches apps/app) ------------------------- */
+/* Redeclares tokens @prism/ui's tokens.css already defines, scoped to this
+   app only via CSS's normal "last declaration wins" cascade — every
+   `border-line`/`border-line-soft`/`border-line-strong` usage across this
+   app repaints to a near-black tonal divider instead of a white-opacity
+   one, with zero per-component edits. landing never imports these
+   components and never sees this override. */
+@theme {
+  --color-line-soft: #151515;
+  --color-line: #1a1a1a;
+  --color-line-strong: #232323;
+
+  /* This app's one accent color — same values as apps/app, for a
+     consistent product-wide brand. */
+  --color-accent: #ecc087;
+  --color-accent-bg: #1d1815;
+}

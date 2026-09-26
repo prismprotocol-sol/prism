@@ -15,7 +15,7 @@ export function Card({
   textured?: boolean;
 }) {
   return (
-    <div className={`relative overflow-hidden border border-line-soft bg-surface-2 p-6 ${className ?? ""}`}>
+    <div className={`relative overflow-hidden rounded-xl border border-line-soft bg-surface-2 p-6 ${className ?? ""}`}>
       {textured && <div className="grain" aria-hidden="true" />}
       {(title || subtitle) && (
         <div className="relative mb-5 flex items-baseline justify-between gap-4 border-b border-line-soft pb-3">

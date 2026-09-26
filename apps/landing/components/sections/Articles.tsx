@@ -58,7 +58,9 @@ export default function Articles() {
         </div>
 
         <Reveal delay={articles.length * 100} className="mt-[clamp(32px,5vw,48px)] flex justify-end">
-          <ArrowButton href="#">View All Articles</ArrowButton>
+          <ArrowButton href="https://x.com/prismprotoc0l/" target="_blank" rel="noopener noreferrer">
+            View All Articles
+          </ArrowButton>
         </Reveal>
       </div>
     </section>

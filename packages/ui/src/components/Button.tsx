@@ -18,7 +18,7 @@ type Props = {
 };
 
 export function Button({ children, onClick, disabled, variant = "outline", type = "button", className, href }: Props) {
-  const classes = `inline-flex items-center justify-center border px-4 py-2.5 font-mono text-xs tracking-[0.08em] uppercase transition-colors duration-[var(--dur-micro)] ease-out disabled:pointer-events-none disabled:opacity-40 ${VARIANTS[variant]} ${className ?? ""}`;
+  const classes = `inline-flex items-center justify-center rounded-lg border px-4 py-2.5 font-mono text-xs tracking-[0.08em] uppercase transition-colors duration-[var(--dur-micro)] ease-out disabled:pointer-events-none disabled:opacity-40 ${VARIANTS[variant]} ${className ?? ""}`;
 
   if (href) {
     return (

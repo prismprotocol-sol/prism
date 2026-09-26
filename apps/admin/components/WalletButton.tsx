@@ -13,9 +13,9 @@ export function WalletButton() {
     return (
       <button
         onClick={() => disconnect()}
-        className="inline-flex items-center gap-2 border border-line-soft px-3 py-2 font-mono text-xs tracking-[0.06em] text-fg uppercase transition-colors duration-[var(--dur-micro)] ease-out hover:border-line-strong"
+        className="inline-flex items-center gap-2 rounded-full border border-line-soft px-3 py-2 font-mono text-xs tracking-[0.06em] text-fg uppercase transition-colors duration-[var(--dur-micro)] ease-out hover:border-line-strong"
       >
-        <span className="h-1.5 w-1.5 bg-fg" aria-hidden="true" />
+        <span className="h-1.5 w-1.5 rounded-full bg-fg" aria-hidden="true" />
         {short}
       </button>
     );
@@ -25,7 +25,7 @@ export function WalletButton() {
     <button
       onClick={() => setVisible(true)}
       disabled={connecting}
-      className="inline-flex items-center gap-2 border border-line-soft px-3 py-2 font-mono text-xs tracking-[0.06em] text-fg uppercase transition-colors duration-[var(--dur-micro)] ease-out hover:border-line-strong disabled:opacity-50"
+      className="inline-flex items-center gap-2 rounded-lg bg-accent-bg px-3 py-2 font-mono text-xs tracking-[0.06em] text-accent uppercase transition-opacity duration-[var(--dur-micro)] ease-out hover:opacity-90 disabled:opacity-50"
     >
       {connecting ? "Connecting…" : "Connect Wallet"}
     </button>
