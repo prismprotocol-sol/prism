@@ -4,4 +4,5 @@ export const SITE_URLS = {
   app: process.env.NEXT_PUBLIC_APP_URL ?? "https://app.prism.credit",
   admin: process.env.NEXT_PUBLIC_ADMIN_URL ?? "https://admin.prism.credit",
   borrow: process.env.NEXT_PUBLIC_BORROW_URL ?? "https://borrow.prism.credit",
+  docs: process.env.NEXT_PUBLIC_DOCS_URL ?? "https://docs.prism.credit",
 } as const;

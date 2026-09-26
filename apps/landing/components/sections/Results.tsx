@@ -3,6 +3,7 @@ import ArrowButton from "@/components/global/ArrowButton";
 import Reveal from "@/components/global/Reveal";
 import CountUp from "@/components/global/CountUp";
 import { metrics } from "@/lib/data";
+import { SITE_URLS } from "@prism/config";
 
 export default function Results() {
   return (
@@ -50,7 +51,7 @@ export default function Results() {
             </p>
           </div>
           <ArrowButton
-            href="#"
+            href={SITE_URLS.docs}
             className="absolute right-[clamp(24px,4vw,56px)] bottom-[clamp(20px,3vw,32px)] z-[var(--z-text)]"
           >
             Read Docs

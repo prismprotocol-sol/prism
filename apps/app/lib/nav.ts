@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import { IconDashboard, IconVaults, IconPortfolio, IconWallet } from "@/components/icons";
+import { IconDashboard, IconVaults, IconSwap, IconPortfolio } from "@/components/icons";
 
 export type NavLink = {
   href: string;
@@ -10,6 +10,6 @@ export type NavLink = {
 export const NAV_LINKS: NavLink[] = [
   { href: "/", label: "Dashboard", icon: IconDashboard },
   { href: "/vaults", label: "Vaults", icon: IconVaults },
+  { href: "/swap", label: "Swap", icon: IconSwap },
   { href: "/portfolio", label: "Portfolio", icon: IconPortfolio },
-  { href: "/wallet", label: "Wallet", icon: IconWallet },
 ];

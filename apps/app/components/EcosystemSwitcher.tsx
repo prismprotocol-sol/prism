@@ -9,6 +9,7 @@ const APPS = [
   { href: SITE_URLS.app, label: "Invest", sub: "You are here" },
   { href: SITE_URLS.admin, label: "Admin", sub: "Protocol operators" },
   { href: SITE_URLS.borrow, label: "Borrow", sub: "Businesses" },
+  { href: SITE_URLS.docs, label: "Docs", sub: "How it works" },
 ];
 
 export function EcosystemSwitcher() {

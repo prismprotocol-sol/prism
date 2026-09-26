@@ -22,22 +22,23 @@ export function IconVaults({ className }: IconProps) {
   );
 }
 
+export function IconSwap({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M3 6h10" />
+      <path d="M10 3l3 3-3 3" />
+      <path d="M15 12H5" />
+      <path d="M8 9l-3 3 3 3" />
+    </svg>
+  );
+}
+
 export function IconPortfolio({ className }: IconProps) {
   return (
     <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
       <path d="M3 15V9" />
       <path d="M9 15V3" />
       <path d="M15 15V11" />
-    </svg>
-  );
-}
-
-export function IconWallet({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <rect x="1.75" y="4.25" width="14.5" height="9.5" rx="2.4" />
-      <path d="M1.75 7.5H16.25" />
-      <circle cx="13" cy="10.75" r="0.9" fill="currentColor" stroke="none" />
     </svg>
   );
 }
